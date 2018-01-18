@@ -73,7 +73,7 @@ export default new Vuex.Store({
         coinmarketcap: {}
       }, {
         id: 'iota',
-        quantity: 1968,
+        quantity: 196,
         quantity: 18,
         tags: ['lou'],
         cost: 30,

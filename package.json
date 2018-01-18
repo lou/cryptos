@@ -11,6 +11,7 @@
     "build": "node build/build.js",
     "deploy": "node ./node_modules/vue-gh-pages/index.js"
   },
+  "homepage": "git@github.com:lou/cryptos",
   "dependencies": {
     "axios": "^0.17.1",
     "element-ui": "^2.0.11",

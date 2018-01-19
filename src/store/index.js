@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
 import axios from 'axios'
+import CryptoJS from 'crypto-js'
+import LZString from 'lz-string'
 
 Vue.use(Vuex)
 
@@ -36,8 +38,9 @@ export const defaultCurrency = {
   tags: []
 }
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
+    password: '',
     sort: {
       by: 'cost',
       ascending: false
@@ -46,41 +49,26 @@ export default new Vuex.Store({
       tags: []
     },
     allCurrencies: [],
-    currencies: [
-      {
-        id: 'ethereum',
-        quantity: 1,
-        tags: ['lou', 'aloha'],
-        cost: 100,
-        coinmarketcap: {}
-      }, {
-        id: 'bitcoin',
-        quantity: 3,
-        tags: ['lou'],
-        cost: 800,
-        coinmarketcap: {}
-      }, {
-        id: 'neo',
-        quantity: 2.3,
-        tags: ['lou'],
-        cost: 30,
-        coinmarketcap: {}
-      }, {
-        id: 'litecoin',
-        quantity: 5,
-        tags: ['lou'],
-        cost: 100,
-        coinmarketcap: {}
-      }, {
-        id: 'iota',
-        quantity: 18,
-        tags: ['lou'],
-        cost: 30,
-        coinmarketcap: {}
-      }
-    ]
+    currencies: []
   },
   mutations: {
+    initialiseStore (state) {
+      const configStr = document.location.pathname.substr(1)
+
+      if (configStr) {
+        let ciphertext = LZString.decompressFromEncodedURIComponent(configStr)
+        let bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '')
+
+        try {
+          let config = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+          this.replaceState({ ...state, ...config })
+          this.dispatch('fetchCurrencies')
+        } catch (e) {
+          console.log('WRONG PASSWORD')
+          // WRONG PASSWORD
+        }
+      }
+    },
     updateSort (state, payload) {
       state.sort.ascending = payload === state.sort.by ? !state.sort.ascending : false
       state.sort.by = payload
@@ -126,7 +114,7 @@ export default new Vuex.Store({
     },
     fetchCurrencies ({ dispatch, state }) {
       state.currencies.forEach((currency) => {
-        dispatch('fetchCurrency', { currency, method: 'updateCurrency' })
+        dispatch('fetchCurrency', { currency, method: 'updateCurrency', bypassEncodeURL: true })
       })
     }
   },
@@ -168,5 +156,26 @@ export default new Vuex.Store({
       }
       return filteredCurrencies
     }
+  }
+})
+
+const URLEncodeActions = ['allCurrencies', 'password', 'updateSort', 'updateTags', 'addCurrency', 'removeCurrency']
+
+let URLEncodeState = (config) => {
+  config = _.omit(config, ['password', 'allCurrencies'])
+
+  config.currencies = _.map(config.currencies, (currency) => {
+    currency.coinmarketcap = {}
+    return currency
+  })
+  return config
+}
+
+store.subscribe((mutation, state) => {
+  if (mutation.payload && !mutation.payload.bypassEncodeURL && _.includes(URLEncodeActions, mutation.type)) {
+    let cyperText = CryptoJS.AES.encrypt(JSON.stringify(URLEncodeState(_.cloneDeep(state))), state.password).toString()
+    let configString = LZString.compressToEncodedURIComponent(cyperText)
+
+    window.history.pushState('Rocket', 'To the moon', `/${configString}`)
   }
 })

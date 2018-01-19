@@ -12,6 +12,9 @@ Vue.use(ElementUI)
 new Vue({
   el: '#app',
   store,
+  beforeCreate () {
+    this.$store.commit('initialiseStore')
+  },
   components: { App },
   template: '<App/>'
 })

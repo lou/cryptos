@@ -1,50 +1,44 @@
 <template>
-  <form v-on:submit.prevent="handleSubmit(localCurrency)">
-    <el-select v-model="localCurrency.id" filterable placeholder="Select">
-      <el-option
-        v-for="item in allCurrencies"
-        :key="item.slug"
-        :label="item.name"
-        :value="item.slug">
-      </el-option>
-    </el-select>
-    <el-input type="number" placeholder="quantity" v-model="localCurrency.quantity"/>
-    <el-input type="number" placeholder="cost" v-model="localCurrency.cost"/>
-    <el-select
+  <b-form @submit.prevent="handleSubmit">
+    <v-select
+      v-model="localCurrency.id"
+      :options="allCurrencies"
+      index="ads"
+      label="name"
+      searchable
+      placeholder="Choose a currency">
+    </v-select>
+    <b-form-input type="number" placeholder="quantity" v-model="localCurrency.quantity" />
+    <b-form-input type="number" placeholder="cost" v-model="localCurrency.cost" />
+    <v-select
       v-model="localCurrency.tags"
-      multiple
-      filterable
-      allow-create
-      default-first-option
-      no-data-text="Create a new tag"
-      placeholder="Choose tags for your currency">
-      <el-option
-        v-for="item in localCurrency.tags"
-        :key="item"
-        :label="item"
-        :value="item">
-      </el-option>
-    </el-select>
-    <el-input type="textarea" v-model="localCurrency.info"></el-input>
-    <el-button type='primary' @click="handleSubmit(localCurrency)">
+      :options="localCurrency.tags"
+      :multiple="true"
+      :taggable="true"
+      placeholder="Select">
+    </v-select>
+    <b-form-textarea v-model="localCurrency.info"></b-form-textarea>
+    <b-button type='primary'>
       {{ submitLabel }}
-    </el-button>
-    <el-button @click="onCancel()">
+    </b-button>
+    <b-button @click="onCancel()">
       Cancel
-    </el-button>
-  </form>
+    </b-button>
+  </b-form>
 </template>
 
 <script>
+import vSelect from 'vue-select'
 import { defaultCurrency } from '../store'
 import _ from 'lodash'
 
 export default {
   name: 'CurrencyForm',
   props: ['currency', 'on-submit', 'on-cancel', 'submit-label'],
+  components: { vSelect },
   methods: {
-    handleSubmit (currency) {
-      this.onSubmit(currency)
+    handleSubmit () {
+      this.onSubmit({ ...this.localCurrency, id: this.localCurrency.id.slug })
     }
   },
   data () {

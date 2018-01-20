@@ -14,12 +14,16 @@
   "homepage": "git@github.com:lou/cryptos",
   "dependencies": {
     "axios": "^0.17.1",
+    "bootstrap": "^4.0.0",
+    "bootstrap-vue": "^1.4.1",
     "crypto-js": "^3.1.9-1",
     "element-ui": "^2.0.11",
     "lodash": "^4.17.4",
     "lz-string": "^1.4.4",
     "vue": "^2.5.2",
+    "vue-awesome": "^2.3.4",
     "vue-gh-pages": "^1.7.5",
+    "vue-select": "https://github.com/SimoTod/vue-select#feature/index-prop",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

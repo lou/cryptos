@@ -1,21 +1,21 @@
 <template>
   <span>
-    <el-button
-      type="primary"
+    <b-button
+      variant="primary"
       @click="modalVisible = true"
       :size="type === 'update' ? 'mini' : ''"
-      :disabled="isAllCurrenciesEmpty"
-      :icon="modalTypes[type].buttonIcon">
+      :disabled="isAllCurrenciesEmpty">
+      <icon :name="modalTypes[type].buttonIcon"></icon>
       {{ modalTypes[type].buttonLabel }}
-    </el-button>
-    <el-dialog ref="dialog" :before-close="closeModal" :title="modalTypes[type].title" :visible.sync="modalVisible" fullscreen>
+    </b-button>
+    <b-modal ref="dialog" :before-close="closeModal" :title="modalTypes[type].title" v-model="modalVisible" fullscreen>
       <currency-form
         :type="type"
         :currency="currency"
         :submit-label="modalTypes[type].submitLabel"
         :on-cancel="closeModal"
         :on-submit="onSubmit" />
-    </el-dialog>
+    </b-modal>
   </span>
 </template>
 
@@ -31,14 +31,14 @@ export default {
       modalVisible: false,
       modalTypes: {
         add: {
-          buttonIcon: 'el-icon-plus',
+          buttonIcon: 'plus',
           buttonLabel: 'Add new currency',
           title: 'Add new currency',
           submitLabel: 'Add new currency',
           method: 'addCurrency'
         },
         update: {
-          buttonIcon: 'el-icon-edit',
+          buttonIcon: 'pencil',
           buttonLabel: '',
           title: 'Edit currency',
           submitLabel: 'Update currency',

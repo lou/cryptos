@@ -1,12 +1,18 @@
 import Vue from 'vue'
 import App from './App'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
 import { store } from './store'
 
-Vue.config.productionTip = false
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
 
-Vue.use(ElementUI)
+Vue.component('icon', Icon)
+Vue.component('icon', Icon)
+
+Vue.use(BootstrapVue)
+
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({

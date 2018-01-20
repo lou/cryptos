@@ -1,26 +1,28 @@
 <template>
-  <div v-if="total.value">
-    <h1>
-      {{ formatNumber(total.value, { style: 'currency', currency: 'EUR' }) }}
-      <small>
-        ({{ formatNumber(total.performance, { style: 'percent' }) }})
-      </small>
-    </h1>
-    <currencies-sort />
-    <currencies-filters />
-    <currency-modal
-      type='add'
-      button-label='Add new currency'
-      button-icon='el-icon-plus' />
-    <currencies-list />
-  </div>
-  <div v-else>
-    <h1>Welcome to Cryptos</h1>
-    <currency-modal
-      type='add'
-      button-label='Start Your Portfolio'
-      button-icon='' />
-  </div>
+  <b-container>
+    <div v-if="total.value">
+      <h1>
+        {{ formatNumber(total.value, { style: 'currency', currency: 'EUR' }) }}
+        <small>
+          ({{ formatNumber(total.performance, { style: 'percent' }) }})
+        </small>
+      </h1>
+      <currencies-sort />
+      <currencies-filters />
+      <currency-modal
+        type='add'
+        button-label='Add new currency'
+        button-icon='el-icon-plus' />
+      <currencies-list />
+    </div>
+    <div v-else>
+      <h1>Welcome to Cryptos</h1>
+      <currency-modal
+        type='add'
+        button-label='Start Your Portfolio'
+        button-icon='' />
+    </div>
+  </b-container>
 </template>
 
 <script>
@@ -60,8 +62,5 @@ body {
   font-family: 'Pontano', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-img {
-  vertical-align: middle;
 }
 </style>

@@ -1,16 +1,12 @@
 <template>
-  <el-dropdown @command="handleSort">
-    <span class="el-dropdown-link">
-      {{ currentSort.name }}<i class="el-icon-arrow-down el-icon--right"></i>
-    </span>
-    <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item
-        v-for="sort in sorts" :key="sort.key"
-        :command="sort.key">
-        {{ sort.name }}
-      </el-dropdown-item>
-    </el-dropdown-menu>
-  </el-dropdown>
+  <b-dropdown :text="currentSort.name" variant="link">
+    <b-dropdown-item-button
+      v-for="sort in sorts"
+      :key="sort.key"
+      @click="handleSort(sort.key)">
+      {{ sort.name }}
+    </b-dropdown-item-button>
+  </b-dropdown>
 </template>
 
 <script>

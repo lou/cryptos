@@ -1,23 +1,20 @@
 <template>
-  <el-select
+  <v-select
     :value="selectedTags"
-    @change="handleSelect"
-    multiple
-    placeholder="Select">
-    <el-option
-      v-for="tag in tags"
-      :key="tag"
-      :label="tag"
-      :value="tag">
-    </el-option>
-  </el-select>
+    :options="tags"
+    :multiple="true"
+    :onChange="handleSelect"
+    placeholder="Filter by tags">
+  </v-select>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import vSelect from 'vue-select'
 
 export default {
   name: 'CurrenciesFilters',
+  components: { vSelect },
   computed: {
     selectedTags () {
       return this.$store.state.filters.tags

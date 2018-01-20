@@ -8,7 +8,7 @@
       :icon="modalTypes[type].buttonIcon">
       {{ modalTypes[type].buttonLabel }}
     </el-button>
-    <el-dialog :title="modalTypes[type].title" :visible.sync="modalVisible" fullscreen>
+    <el-dialog ref="dialog" :before-close="closeModal" :title="modalTypes[type].title" :visible.sync="modalVisible" fullscreen>
       <currency-form
         :type="type"
         :currency="currency"
@@ -21,7 +21,6 @@
 
 <script>
 import CurrencyForm from './CurrencyForm'
-import _ from 'lodash'
 
 export default {
   name: 'AddCurrency',
@@ -51,14 +50,12 @@ export default {
   computed: {
     isAllCurrenciesEmpty () {
       return this.$store.state.allCurrencies.length === 0
-    },
-    uniqueId () {
-      return _.uniqueId('modal_')
     }
   },
   methods: {
     closeModal () {
       this.modalVisible = false
+      this.$refs.dialog.$data.rendered = false
     },
     onSubmit (currency) {
       this.$store.dispatch('fetchCurrency', { method: this.modalTypes[this.type].method, currency, callback: this.closeModal })

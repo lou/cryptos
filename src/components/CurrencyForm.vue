@@ -37,26 +37,24 @@
 
 <script>
 import { defaultCurrency } from '../store'
+import _ from 'lodash'
 
 export default {
   name: 'CurrencyForm',
   props: ['currency', 'on-submit', 'on-cancel', 'submit-label'],
   methods: {
-    handleSubmit () {
-      this.onSubmit(this.$data.localCurrency)
-      if (!this.localCurrency.id) {
-        this.$data.localCurrency = Object.assign({}, defaultCurrency)
-      }
+    handleSubmit (currency) {
+      this.onSubmit(currency)
+    }
+  },
+  data () {
+    return {
+      localCurrency: _.cloneDeep(this.currency || defaultCurrency)
     }
   },
   computed: {
     allCurrencies () {
       return this.$store.state.allCurrencies
-    }
-  },
-  data () {
-    return {
-      localCurrency: Object.assign({}, this.currency || defaultCurrency)
     }
   }
 }

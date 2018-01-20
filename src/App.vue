@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div v-if="total.value">
     <h1>
       {{ formatNumber(total.value, { style: 'currency', currency: 'EUR' }) }}
       <small>
@@ -8,8 +8,18 @@
     </h1>
     <currencies-sort />
     <currencies-filters />
-    <currency-modal type='add' />
+    <currency-modal
+      type='add'
+      button-label='Add new currency'
+      button-icon='el-icon-plus' />
     <currencies-list />
+  </div>
+  <div v-else>
+    <h1>Welcome to Cryptos</h1>
+    <currency-modal
+      type='add'
+      button-label='Start Your Portfolio'
+      button-icon='' />
   </div>
 </template>
 
@@ -20,6 +30,7 @@ import CurrenciesFilters from './components/CurrenciesFilters'
 import CurrencyModal from './components/CurrencyModal'
 import { Numbers } from './mixins/Numbers'
 import { mapGetters } from 'vuex'
+import _ from 'lodash'
 
 export default {
   name: 'App',
@@ -33,8 +44,12 @@ export default {
   computed: {
     ...mapGetters(['total'])
   },
+  methods: {
+    uniqueId () {
+      return _.uniqueId()
+    }
+  },
   created () {
-    this.$store.dispatch('fetchCurrencies')
     this.$store.dispatch('fetchAllCurrencies')
   }
 }

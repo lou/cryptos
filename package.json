@@ -22,7 +22,7 @@
     "lz-string": "^1.4.4",
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",
-    "vue-gh-pages": "^1.7.5",
+    "vue-gh-pages": "^1.8.3",
     "vue-select": "https://github.com/SimoTod/vue-select#feature/index-prop",
     "vuex": "^3.0.1"
   },

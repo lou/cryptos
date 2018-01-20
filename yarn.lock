@@ -6198,12 +6198,11 @@ vue-functional-data-merge@^2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-2.0.4.tgz#b045ca57097f31446db6de15c87642b6e88ca7c2"
 
-vue-gh-pages@^1.7.5:
-  version "1.7.5"
-  resolved "https://registry.yarnpkg.com/vue-gh-pages/-/vue-gh-pages-1.7.5.tgz#4d2ad8389c21e7b1d646b88e69dab769215eed17"
+vue-gh-pages@^1.8.3:
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/vue-gh-pages/-/vue-gh-pages-1.8.4.tgz#f5ff628edbef894944b0b968961bd045ca016f06"
   dependencies:
     gh-pages "^1.0.0"
-    mkdirp "^0.5.1"
     ncp "^2.0.0"
     rimraf "^2.6.1"
 

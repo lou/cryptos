@@ -6675,7 +6675,7 @@ vue-functional-data-merge@^2.0.3:
 
 "vue-gh-pages@https://github.com/lou/vue-gh-pages#regex-refacto":
   version "1.8.3"
-  resolved "https://github.com/lou/vue-gh-pages#3de8b4556701d4f2d678552b75212918aea75a7e"
+  resolved "https://github.com/lou/vue-gh-pages#00e299911a870e6ef49d6e1202e39ef26970ca6f"
   dependencies:
     gh-pages "^1.0.0"
     ncp "^2.0.0"

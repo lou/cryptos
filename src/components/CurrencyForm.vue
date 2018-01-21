@@ -14,6 +14,7 @@
     <b-form-group label="Quantity:" label-for="currency_quantity">
       <b-form-input
         type="number"
+        step="any"
         placeholder="How much did you buy?"
         v-model="localCurrency.quantity"
         id="currency_quantity" />
@@ -21,6 +22,7 @@
     <b-form-group label="Cost:" label-for="currency_cost">
       <b-form-input
         type="number"
+        step="any"
         placeholder="How much did it cost you?"
         v-model="localCurrency.cost"
         id="currency_cost" />
@@ -31,7 +33,7 @@
         :options="localCurrency.tags"
         :multiple="true"
         :taggable="true"
-        placeholder="Choose tags"
+        placeholder="Choose or create tags"
         id="currency_tags">
       </v-select>
     </b-form-group>

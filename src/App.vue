@@ -32,14 +32,22 @@
         </b-row>
         <currencies-list />
       </div>
-      <div v-else class='text-center mt-5'>
-        <h1 class='mb-5'>Welcome to Cryptos</h1>
-        <div class='pt-5'>
-          <currency-modal
-            type='add'
-            button-label='Start Your Portfolio'
-            button-variant="primary"
-            button-size="lg" />
+      <div v-else class='text-center mt-5' id='space'>
+        <div id='moon'></div>
+        <div id='jupiter'></div>
+        <div id='astronaut'></div>
+        <div id='rocket'></div>
+        <div id='space-station'></div>
+        <div id='planet-earth'></div>
+        <div id='space-title'>
+          <h1 class='pt-5'>Welcome to Cryptos</h1>
+          <div class='pt-3'>
+            <currency-modal
+              type='add'
+              button-label='Start Your Portfolio'
+              button-variant="primary"
+              button-size="lg" />
+          </div>
         </div>
       </div>
     </b-container>

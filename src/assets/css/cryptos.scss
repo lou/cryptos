@@ -34,9 +34,88 @@ button {
   border-bottom: 1px $gray-300 solid;
 }
 
-.to-the-moon{
-  width: 100%;
+.to-the-moon {
   height: 100%;
-  background: transparent url(./assets/moon.svg) no-repeat 80% 110px;
-  background-size: 350px 350px;
+  overflow: hidden;
+}
+
+#space {
+  overflow: hidden;
+}
+
+#moon {
+  position: absolute;
+  top: 200px;
+  right: 10px;
+  width: 300px;
+  height: 300px;
+  background: transparent url(./assets/moon.svg) no-repeat;
+}
+
+#rocket {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: rotate(10deg);
+  width: 100px;
+  height: 100px;
+  background: transparent url(./assets/rocket.svg) no-repeat;
+  z-index: 2;
+}
+
+#astronaut {
+  position: absolute;
+  top: 200px;
+  right: 32px;
+  width: 40px;
+  height: 40px;
+  background: transparent url(./assets/astronaut.svg) no-repeat;
+  transform: rotate(44deg);
+}
+
+#jupiter {
+  position: absolute;
+  top: 70px;
+  left: 30%;
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+  background: transparent url(./assets/jupiter.svg) no-repeat;
+  transform: rotate(-20deg);
+}
+
+#mars {
+  position: absolute;
+  top: 60px;
+  right: 200px;
+  width: 60px;
+  height: 60px;
+  background: transparent url(./assets/mars.svg) no-repeat;
+}
+
+#planet-earth {
+  position: absolute;
+  left: -200px;
+  bottom: -250px;
+  width: 600px;
+  height: 600px;
+  background: transparent url(./assets/planet-earth.svg) no-repeat;
+}
+
+#space-station {
+  position: absolute;
+  left: 0px;
+  bottom: 370px;
+  width: 45px;
+  height: 45px;
+  background: transparent url(./assets/space-station.svg) no-repeat;
+  transform: rotate(75deg);
+}
+
+#space-title {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 100%;
+  z-index: 4;
 }

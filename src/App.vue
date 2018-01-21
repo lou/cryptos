@@ -55,4 +55,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.fa-icon {
+  vertical-align: text-bottom;
+}
 </style>

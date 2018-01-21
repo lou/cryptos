@@ -18,7 +18,7 @@
     </div>
     <div v-if="tags(currency)">tags: {{ tags(currency) }}</div>
     <div v-if="info(currency)">info: {{ info(currency) }}</div>
-    <b-button @click="removeCurrency(currency)">
+    <b-button variant="outline-danger" size='sm' @click="removeCurrency(currency)">
       <icon name="trash"></icon>
     </b-button>
     <currency-modal type='update' :currency="currency" />

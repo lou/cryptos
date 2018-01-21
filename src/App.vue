@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="to-the-moon">
     <b-navbar toggleable="md" type="dark" variant="primary">
       <b-container>
         <b-navbar-brand href="#">
@@ -9,7 +9,9 @@
         </b-navbar-brand>
         <currency-modal
           type='add'
-          button-label='Add new currency' />
+          button-label='Add new currency'
+          button-variant='outline-info'
+          button-size='sm' />
       </b-container>
     </b-navbar>
     <b-container>
@@ -30,11 +32,15 @@
         </b-row>
         <currencies-list />
       </div>
-      <div v-else>
-        <h1>Welcome to Cryptos</h1>
-        <currency-modal
-          type='add'
-          button-label='Start Your Portfolio' />
+      <div v-else class='text-center mt-5'>
+        <h1 class='mb-5'>Welcome to Cryptos</h1>
+        <div class='pt-5'>
+          <currency-modal
+            type='add'
+            button-label='Start Your Portfolio'
+            button-variant="primary"
+            button-size="lg" />
+        </div>
       </div>
     </b-container>
   </div>

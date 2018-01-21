@@ -1,18 +1,19 @@
 <template>
   <span>
     <b-button
-      :variant="type === 'update' ? 'outline-primary' : 'outline-info'"
+      :variant="buttonVariant"
       @click="modalVisible = true"
-      :size="type === 'update' ? 'sm' : 'sm'"
+      :size="buttonSize"
       :disabled="isAllCurrenciesEmpty">
-      <icon v-if="modalTypes[type].buttonIcon" :name="modalTypes[type].buttonIcon"></icon>
-      {{ modalTypes[type].buttonLabel }}
+      <icon v-if="buttonIcon" :name="buttonIcon"></icon>
+      {{ buttonLabel }}
     </b-button>
     <b-modal
       ref="dialog"
       :title="modalTypes[type].title"
       v-model="modalVisible"
-      hide-footer>
+      hide-footer
+      class='text-left'>
       <currency-form
         :type="type"
         :currency="currency"
@@ -28,22 +29,18 @@ import CurrencyForm from './CurrencyForm'
 
 export default {
   name: 'AddCurrency',
-  props: ['type', 'currency'],
+  props: ['type', 'currency', 'button-variant', 'button-label', 'button-icon', 'button-size'],
   components: { CurrencyForm },
   data () {
     return {
       modalVisible: false,
       modalTypes: {
         add: {
-          buttonIcon: '',
-          buttonLabel: 'Add new currency',
           title: 'Add new currency',
           submitLabel: 'Add new currency',
           method: 'addCurrency'
         },
         update: {
-          buttonIcon: 'pencil',
-          buttonLabel: '',
           title: 'Edit currency',
           submitLabel: 'Update currency',
           method: 'updateCurrency'

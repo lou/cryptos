@@ -1,5 +1,5 @@
 <template>
-  <div class="to-the-moon">
+  <div v-bind:class="{ 'to-the-moon': (total.value === 0) }">
     <b-navbar toggleable="md" type="dark" variant="primary">
       <b-container>
         <b-navbar-brand href="#">

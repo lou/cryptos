@@ -35,7 +35,7 @@
           <b-button variant="outline-danger" size='sm' @click="removeCurrency(currency)">
             <icon name="trash"></icon>
           </b-button>
-          <currency-modal type='update' :currency="currency" />
+          <currency-modal type='update' :currency="currency" button-variant='outline-primary' button-icon='pencil' button-size='sm' />
         </b-col>
       </b-row>
     </b-collapse>

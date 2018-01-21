@@ -1,9 +1,9 @@
 <template>
   <span>
     <b-button
-      variant="outline-primary"
+      :variant="type === 'update' ? 'outline-primary' : 'primary'"
       @click="modalVisible = true"
-      :size="type === 'update' ? 'sm' : ''"
+      :size="type === 'update' ? 'sm' : 'sm'"
       :disabled="isAllCurrenciesEmpty">
       <icon :name="modalTypes[type].buttonIcon"></icon>
       {{ modalTypes[type].buttonLabel }}

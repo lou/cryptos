@@ -43,7 +43,7 @@
         rows="7">
       </b-form-textarea>
     </b-form-group>
-    <b-button type="submit" variant='outline-primary'>
+    <b-button type="submit" variant='primary'>
       {{ submitLabel }}
     </b-button>
     <b-button variant='outline-secondary' @click="onCancel()">

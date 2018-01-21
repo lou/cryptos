@@ -1,9 +1,9 @@
 <template>
   <div>
-    <b-navbar toggleable="md" type="dark" variant="info">
+    <b-navbar toggleable="md" type="dark" variant="primary">
       <b-container>
         <b-navbar-brand href="#">
-          <img src="./assets/logo.png" alt="cryptos" width='24' height='24' />
+          <img class='navbar-brand-img' src="./assets/rocket.svg" alt="cryptos" width='32' height='32' />
           &nbsp;
           Cryptos
         </b-navbar-brand>
@@ -14,12 +14,12 @@
     </b-navbar>
     <b-container>
       <div v-if="total.value">
-        <h1>
+        <h3 class='mt-4 mb-5 text-center'>
           {{ formatNumber(total.value, { style: 'currency', currency: 'EUR' }) }}
           <small>
             ({{ formatNumber(total.performance, { style: 'percent' }) }})
           </small>
-        </h1>
+        </h3>
         <b-row>
           <b-col cols='7' sm='8' md='6' lg='5'>
             <currencies-filters />
@@ -66,13 +66,9 @@ export default {
 }
 </script>
 
-<style>
-body {
-  font-family: 'Pontano', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.fa-icon {
-  vertical-align: text-bottom;
-}
+<style lang="scss">
+@import './assets/css/theme.scss';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/vue-select/scss/vue-select.scss';
+@import './assets/css/cryptos.scss';
 </style>

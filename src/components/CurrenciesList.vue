@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div v-for="currency in filteredCurrencies" :key="currency.id">
-      <currency :currency="currency" />
-    </div>
+  <div class='mt-3'>
+    <currency v-for="currency in filteredCurrencies" :key="currency.id" :currency="currency" />
   </div>
 </template>
 

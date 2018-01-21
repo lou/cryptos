@@ -1,11 +1,11 @@
 <template>
   <span>
     <b-button
-      :variant="type === 'update' ? 'outline-primary' : 'primary'"
+      :variant="type === 'update' ? 'outline-primary' : 'outline-info'"
       @click="modalVisible = true"
       :size="type === 'update' ? 'sm' : 'sm'"
       :disabled="isAllCurrenciesEmpty">
-      <icon :name="modalTypes[type].buttonIcon"></icon>
+      <icon v-if="modalTypes[type].buttonIcon" :name="modalTypes[type].buttonIcon"></icon>
       {{ modalTypes[type].buttonLabel }}
     </b-button>
     <b-modal
@@ -35,7 +35,7 @@ export default {
       modalVisible: false,
       modalTypes: {
         add: {
-          buttonIcon: 'plus',
+          buttonIcon: '',
           buttonLabel: 'Add new currency',
           title: 'Add new currency',
           submitLabel: 'Add new currency',

@@ -1,0 +1,33 @@
+// Override / set color variables
+$white: #fff;
+$black: #000;
+$green: #00e389;
+$blue: #273b48;
+$orange: #ed543f;
+$yellow: #ebbc4b;
+$red: #ed543f;
+
+
+$gray-100: #f2eec9;
+$gray-300: #e3dfbc;
+$gray-600: #7D7956;
+$gray-900: #4A4623;
+
+// Set brand colors
+$primary: $blue;
+$success: $green;
+$info: $white;
+$warning: $yellow;
+$danger: $red;
+
+$body-bg: $gray-100;
+
+$font-family-sans-serif: 'Pontano', Helvetica, Arial, sans-serif;
+
+$dropdown-link-color:        $gray-900;
+$dropdown-link-hover-color:  $white;
+$dropdown-link-hover-bg:     $primary;
+$dropdown-link-active-color: $gray-900;
+$dropdown-link-active-bg:    $gray-100;
+
+$modal-content-bg: $gray-100;

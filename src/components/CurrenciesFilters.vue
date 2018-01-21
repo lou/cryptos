@@ -1,5 +1,6 @@
 <template>
   <v-select
+    class='filters'
     v-if="tags.length > 0"
     :value="selectedTags"
     :options="tags"

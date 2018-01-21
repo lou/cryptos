@@ -1,27 +1,44 @@
 <template>
-  <div>
-    <h3>
-      <img :src="`https://files.coinmarketcap.com/static/img/coins/32x32/${currency.key}.png`" height="24" width="24" />
-      {{ currency.coinmarketcap.name }}
-      {{ formatNumber(price(currency), { style: 'currency', currency: 'EUR' }) }}
-    </h3>
-    <div>
-      quantity: {{ formatNumber(parseFloat(currency.quantity)) }}
-    </div>
-    <div>
-      cost: {{ formatNumber(parseFloat(currency.cost), { style: 'currency', currency: 'EUR' }) }}
-      <small>({{ formatNumber(distribution(currency), { style: 'percent' }) }})</small>
-    </div>
-    <div>
-      value: {{ formatNumber(value(currency), { style: 'currency', currency: 'EUR' }) }}
-      <small>({{ formatNumber(performance(currency), { style: 'percent' }) }})</small>
-    </div>
-    <div v-if="tags(currency)">tags: {{ tags(currency) }}</div>
-    <div v-if="info(currency)">info: {{ info(currency) }}</div>
-    <b-button variant="outline-danger" size='sm' @click="removeCurrency(currency)">
-      <icon name="trash"></icon>
-    </b-button>
-    <currency-modal type='update' :currency="currency" />
+  <div class='currency'>
+    <b-row v-b-toggle="currency.id.toString()" class='pb-3 pt-3 currency-header'>
+      <b-col cols='7'>
+        <b-media vertical-align="center" >
+          <b-img slot="aside" :src="`https://files.coinmarketcap.com/static/img/coins/32x32/${currency.key}.png`" height="32" width="32" />
+          <strong>
+            {{ currency.coinmarketcap.name }}
+          </strong>
+          <div>
+            {{ formatNumber(currency.coinmarketcap.price_eur, { style: 'currency', currency: 'EUR' }) }}
+            <small>({{ formatNumber(currency.coinmarketcap.percent_change_24h / 100, { style: 'percent' }) }})</small>
+          </div>
+        </b-media>
+      </b-col>
+      <b-col cols='5' class='text-right'>
+        <strong>{{ formatNumber(value(currency), { style: 'currency', currency: 'EUR' }) }}</strong>
+        <div><small>{{ formatNumber(performance(currency), { style: 'percent' }) }}</small></div>
+      </b-col>
+    </b-row>
+    <b-collapse :id="currency.id.toString()" class='currency-more pb-3'>
+      <b-row>
+        <b-col cols='8'>
+          <div>
+            <span class='text-muted'>quantity:</span> {{ formatNumber(currency.quantity) }}
+          </div>
+          <div>
+            <span class='text-muted'>cost:</span> {{ formatNumber(currency.cost, { style: 'currency', currency: 'EUR' }) }}
+            <small>({{ formatNumber(distribution(currency), { style: 'percent' }) }})</small>
+          </div>
+          <div v-if="tags(currency)"><span class='text-muted'>tags:</span> {{ tags(currency) }}</div>
+          <div v-if="info(currency)"><span class='text-muted'>info:</span> {{ info(currency) }}</div>
+        </b-col>
+        <b-col cols='4' class='text-right'>
+          <b-button variant="outline-danger" size='sm' @click="removeCurrency(currency)">
+            <icon name="trash"></icon>
+          </b-button>
+          <currency-modal type='update' :currency="currency" />
+        </b-col>
+      </b-row>
+    </b-collapse>
   </div>
 </template>
 
@@ -42,9 +59,6 @@ export default {
     ...mapGetters(['total'])
   },
   methods: {
-    price (currency) {
-      return parseFloat(currency.coinmarketcap.price_eur)
-    },
     tags (currency) {
       if (!_.isEmpty(currency.tags)) {
         return currency.tags.join(', ')

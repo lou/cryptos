@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App'
 import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
 import { store } from './store'
 
 import 'vue-awesome/icons'

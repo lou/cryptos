@@ -1,5 +1,5 @@
 <template>
-  <b-dropdown :text="currentSort.name" variant="link">
+  <b-dropdown right :text="currentSort.name" variant="link">
     <b-dropdown-item-button
       v-for="sort in sorts"
       :key="sort.key"

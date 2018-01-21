@@ -1,0 +1,30 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-icon {
+  vertical-align: text-bottom;
+}
+
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+
+.currency {
+  &:not(:last-child) {
+    border-bottom: 1px $gray-300 solid;
+  }
+}
+
+.currency-header {
+  cursor: pointer;
+}
+
+.v-select.filters .dropdown-toggle {
+  background: transparent;
+  border: none;
+  border-bottom: 1px $gray-300 solid;
+}

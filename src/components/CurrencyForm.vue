@@ -43,7 +43,7 @@
         rows="7">
       </b-form-textarea>
     </b-form-group>
-    <b-button variant='outline-primary'>
+    <b-button type="submit" variant='outline-primary'>
       {{ submitLabel }}
     </b-button>
     <b-button variant='outline-secondary' @click="onCancel()">
@@ -63,7 +63,7 @@ export default {
   components: { vSelect },
   methods: {
     handleSubmit () {
-      this.onSubmit(this.localCurrency)
+      this.onSubmit(_.cloneDeep(this.localCurrency))
       if (!this.currency) {
         this.localCurrency = _.cloneDeep(defaultCurrency)
       }

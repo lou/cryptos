@@ -11,7 +11,8 @@
     <b-modal
       ref="dialog"
       :title="modalTypes[type].title"
-      v-model="modalVisible">
+      v-model="modalVisible"
+      hide-footer>
       <currency-form
         :type="type"
         :currency="currency"

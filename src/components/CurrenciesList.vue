@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(currency, index) in filteredCurrencies" :key="currency.id+''+index">
+    <div v-for="currency in filteredCurrencies" :key="currency.id">
       <currency :currency="currency" />
     </div>
   </div>

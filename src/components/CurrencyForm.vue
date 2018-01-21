@@ -1,9 +1,9 @@
 <template>
   <b-form @submit.prevent="handleSubmit">
     <v-select
-      v-model="localCurrency.id"
+      v-model="localCurrency.key"
       :options="allCurrencies"
-      index="ads"
+      index="slug"
       label="name"
       searchable
       placeholder="Choose a currency">
@@ -38,7 +38,10 @@ export default {
   components: { vSelect },
   methods: {
     handleSubmit () {
-      this.onSubmit({ ...this.localCurrency, id: this.localCurrency.id.slug })
+      this.onSubmit(this.localCurrency)
+      if (!this.currency) {
+        this.localCurrency = _.cloneDeep(defaultCurrency)
+      }
     }
   },
   data () {

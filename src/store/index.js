@@ -77,7 +77,8 @@ export const store = new Vuex.Store({
       state.filters.tags = tags
     },
     addCurrency (state, payload) {
-      if (!_.isEmpty(payload.currency.id)) {
+      if (!_.isEmpty(payload.currency.key)) {
+        payload.currency.id = state.currencies.length + 1
         state.currencies.push(payload.currency)
         if (typeof payload.callback === 'function') {
           payload.callback()
@@ -104,7 +105,7 @@ export const store = new Vuex.Store({
       })
     },
     fetchCurrency ({ commit }, payload) {
-      axios.get(`https://api.coinmarketcap.com/v1/ticker/${payload.currency.id}/?convert=EUR`).then(response => {
+      axios.get(`https://api.coinmarketcap.com/v1/ticker/${payload.currency.key}/?convert=EUR`).then(response => {
         payload.currency.coinmarketcap = response.data[0]
         commit(payload.method, {
           currency: payload.currency,

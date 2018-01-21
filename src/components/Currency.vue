@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>
-      <img :src="`https://files.coinmarketcap.com/static/img/coins/32x32/${currency.id}.png`" height="24" width="24" />
+      <img :src="`https://files.coinmarketcap.com/static/img/coins/32x32/${currency.key}.png`" height="24" width="24" />
       {{ currency.coinmarketcap.name }}
       {{ formatNumber(price(currency), { style: 'currency', currency: 'EUR' }) }}
     </h3>

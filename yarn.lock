@@ -6228,9 +6228,9 @@ vue-loader@^13.3.0:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-"vue-select@https://github.com/SimoTod/vue-select#feature/index-prop":
+"vue-select@https://github.com/SimoTod/vue-select":
   version "2.4.0"
-  resolved "https://github.com/SimoTod/vue-select#76a90246d8bf6d223cc7c4ed14b4b258a51a23b5"
+  resolved "https://github.com/SimoTod/vue-select#2ab8bfcf7e42887ce6035bfd4beb7a0c6b821002"
 
 vue-style-loader@^3.0.0, vue-style-loader@^3.0.1:
   version "3.0.3"

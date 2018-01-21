@@ -8,7 +8,10 @@
       <icon :name="modalTypes[type].buttonIcon"></icon>
       {{ modalTypes[type].buttonLabel }}
     </b-button>
-    <b-modal ref="dialog" :before-close="closeModal" :title="modalTypes[type].title" v-model="modalVisible" fullscreen>
+    <b-modal
+      ref="dialog"
+      :title="modalTypes[type].title"
+      v-model="modalVisible">
       <currency-form
         :type="type"
         :currency="currency"
@@ -55,7 +58,6 @@ export default {
   methods: {
     closeModal () {
       this.modalVisible = false
-      this.$refs.dialog.$data.rendered = false
     },
     onSubmit (currency) {
       this.$store.dispatch('fetchCurrency', { method: this.modalTypes[this.type].method, currency, callback: this.closeModal })

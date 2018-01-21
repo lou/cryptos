@@ -11,16 +11,14 @@
       <currencies-filters />
       <currency-modal
         type='add'
-        button-label='Add new currency'
-        button-icon='el-icon-plus' />
+        button-label='Add new currency' />
       <currencies-list />
     </div>
     <div v-else>
       <h1>Welcome to Cryptos</h1>
       <currency-modal
         type='add'
-        button-label='Start Your Portfolio'
-        button-icon='' />
+        button-label='Start Your Portfolio' />
     </div>
   </b-container>
 </template>
@@ -32,7 +30,6 @@ import CurrenciesFilters from './components/CurrenciesFilters'
 import CurrencyModal from './components/CurrencyModal'
 import { Numbers } from './mixins/Numbers'
 import { mapGetters } from 'vuex'
-import _ from 'lodash'
 
 export default {
   name: 'App',
@@ -45,11 +42,6 @@ export default {
   },
   computed: {
     ...mapGetters(['total'])
-  },
-  methods: {
-    uniqueId () {
-      return _.uniqueId()
-    }
   },
   created () {
     this.$store.dispatch('fetchAllCurrencies')

@@ -53,7 +53,7 @@ export const store = new Vuex.Store({
   },
   mutations: {
     initialiseStore (state) {
-      const configStr = document.location.pathname.substr(1)
+      const configStr = document.location.hash.substr(1)
 
       if (configStr) {
         let ciphertext = LZString.decompressFromEncodedURIComponent(configStr)
@@ -177,6 +177,6 @@ store.subscribe((mutation, state) => {
     let cyperText = CryptoJS.AES.encrypt(JSON.stringify(URLEncodeState(_.cloneDeep(state))), state.password).toString()
     let configString = LZString.compressToEncodedURIComponent(cyperText)
 
-    window.history.pushState('Rocket', 'To the moon', `/${configString}`)
+    window.history.pushState('Rocket', 'To the moon', `#${configString}`)
   }
 })

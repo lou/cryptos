@@ -13,19 +13,22 @@
 <script>
 import { mapGetters } from 'vuex'
 import vSelect from 'vue-select'
+import _ from 'lodash'
 
 export default {
   name: 'CurrenciesFilters',
   components: { vSelect },
   computed: {
     selectedTags () {
-      return this.$store.state.filters.tags
+      return _.clone(this.$store.state.filters.tags)
     },
     ...mapGetters(['tags'])
   },
   methods: {
     handleSelect (tags) {
-      this.$store.commit('updateTags', tags)
+      if (!_.isEqual(_.clone(tags), _.clone(this.$store.state.filters.tags))) {
+        this.$store.commit('updateTags', tags)
+      }
     }
   }
 }

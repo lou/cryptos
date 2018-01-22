@@ -41,6 +41,7 @@ export const defaultCurrency = {
 export const store = new Vuex.Store({
   state: {
     password: '',
+    showList: false,
     sort: {
       by: 'cost',
       ascending: false
@@ -61,12 +62,15 @@ export const store = new Vuex.Store({
 
         try {
           let config = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
-          this.replaceState({ ...state, ...config })
+
+          this.replaceState({ ...state, ...config, showList: true })
           this.dispatch('fetchCurrencies')
         } catch (e) {
           console.log('WRONG PASSWORD')
           // WRONG PASSWORD
         }
+      } else {
+        this.replaceState({ ...state, showList: false })
       }
     },
     updateSort (state, payload) {

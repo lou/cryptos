@@ -15,7 +15,7 @@
       <b-form-input
         type="number"
         step="any"
-        placeholder="How much did you buy?"
+        placeholder="How much do you own?"
         v-model="localCurrency.quantity"
         id="currency_quantity" />
     </b-form-group>
@@ -30,7 +30,7 @@
     <b-form-group label="Tags:" label-for="currency_tags">
       <v-select
         v-model="localCurrency.tags"
-        :options="localCurrency.tags"
+        :options="tags"
         :multiple="true"
         :taggable="true"
         placeholder="Choose or create tags"
@@ -57,6 +57,7 @@
 <script>
 import vSelect from 'vue-select'
 import { defaultCurrency } from '../store'
+import { mapGetters } from 'vuex'
 import _ from 'lodash'
 
 export default {
@@ -79,7 +80,8 @@ export default {
   computed: {
     allCurrencies () {
       return this.$store.state.allCurrencies
-    }
+    },
+    ...mapGetters(['tags'])
   }
 }
 </script>

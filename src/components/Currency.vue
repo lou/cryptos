@@ -18,8 +18,8 @@
         <div><small>{{ formatNumber(performance(currency), { style: 'percent' }) }}</small></div>
       </b-col>
     </b-row>
-    <b-collapse :id="currency.id.toString()" class='currency-more pb-3'>
-      <b-row>
+    <b-collapse :id="currency.id.toString()" class='currency-more'>
+      <b-row class='pb-3'>
         <b-col cols='8'>
           <div>
             <span class='text-muted'>quantity:</span> {{ formatNumber(currency.quantity) }}

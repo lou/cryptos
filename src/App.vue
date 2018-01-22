@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:class="{ 'to-the-moon': (total.value === 0) }">
+  <div class="full-height">
     <b-navbar toggleable="md" type="dark" variant="primary">
       <b-container>
         <b-navbar-brand href="#">
@@ -14,30 +14,31 @@
           button-size='sm' />
       </b-container>
     </b-navbar>
-    <b-container>
-      <div v-if="total.value">
-        <h3 class='mt-4 mb-5 text-center'>
-          {{ formatNumber(total.value, { style: 'currency', currency: 'EUR' }) }}
-          <small>
-            ({{ formatNumber(total.performance, { style: 'percent' }) }})
-          </small>
-        </h3>
-        <b-row>
-          <b-col cols='7' sm='8' md='6' lg='5'>
-            <currencies-filters />
-          </b-col>
-          <b-col cols='5' sm='4' md='6' lg='7' class='text-right'>
-            <currencies-sort />
-          </b-col>
-        </b-row>
-        <currencies-list />
-      </div>
-      <div v-else class='text-center mt-5' id='space'>
+    <b-container  v-if="total.value">
+      <h3 class='mt-4 mb-5 text-center'>
+        {{ formatNumber(total.value, { style: 'currency', currency: 'EUR' }) }}
+        <small>
+          ({{ formatNumber(total.performance, { style: 'percent' }) }})
+        </small>
+      </h3>
+      <b-row>
+        <b-col cols='7' sm='8' md='6' lg='5'>
+          <currencies-filters />
+        </b-col>
+        <b-col cols='5' sm='4' md='6' lg='7' class='text-right'>
+          <currencies-sort />
+        </b-col>
+      </b-row>
+      <currencies-list />
+    </b-container>
+    <div v-else id='space'>
+      <b-container class='full-height text-center pt-5'>
         <div id='moon'></div>
         <div id='jupiter'></div>
         <div id='astronaut'></div>
         <div id='rocket'></div>
         <div id='space-station'></div>
+        <div id='saturn'></div>
         <div id='planet-earth'></div>
         <div id='space-title'>
           <h1 class='pt-5'>Welcome to Cryptos</h1>
@@ -49,8 +50,8 @@
               button-size="lg" />
           </div>
         </div>
-      </div>
-    </b-container>
+      </b-container>
+    </div>
   </div>
 </template>
 

@@ -34,12 +34,21 @@ button {
   border-bottom: 1px $gray-300 solid;
 }
 
-.to-the-moon {
+.full-height {
   height: 100%;
-  overflow: hidden;
 }
 
+.modal-content {
+  background-image: url('./assets/alien.svg');
+  background-repeat: no-repeat;
+  background-size: 100px 50px;
+  background-position: bottom right;
+}
+
+
 #space {
+  position: relative;
+  height: calc(100% - 58px);
   overflow: hidden;
 }
 
@@ -75,22 +84,22 @@ button {
 
 #jupiter {
   position: absolute;
-  top: 70px;
-  left: 30%;
-  width: 40px;
-  height: 40px;
-  opacity: 0.8;
+  top: -10px;
+  right: 300px;
+  width: 80px;
+  height: 80px;
+  opacity: 0.6;
   background: transparent url('./assets/jupiter.svg') no-repeat;
   transform: rotate(-20deg);
 }
 
-#mars {
+#saturn {
   position: absolute;
-  top: 60px;
-  right: 200px;
-  width: 60px;
-  height: 60px;
-  background: transparent url('./assets/mars.svg') no-repeat;
+  left: 200px;
+  top: 20px;
+  width: 120px;
+  height: 100px;
+  background: transparent url('./assets/saturn.svg') no-repeat;
 }
 
 #planet-earth {
@@ -104,7 +113,7 @@ button {
 
 #space-station {
   position: absolute;
-  left: 0px;
+  left: 5px;
   bottom: 370px;
   width: 45px;
   height: 45px;
@@ -115,7 +124,7 @@ button {
 #space-title {
   position: absolute;
   left: 0;
-  top: 100px;
+  top: 40px;
   width: 100%;
   z-index: 4;
 }

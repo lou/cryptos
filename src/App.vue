@@ -1,7 +1,10 @@
 <template>
   <div class="full-height">
     <navbar />
-    <currencies-list v-if="showList"/>
+    <div v-if="showList">
+      <password-form v-if="wrongPassword" />
+      <currencies-list v-else />
+    </div>
     <home v-else />
   </div>
 </template>
@@ -10,17 +13,22 @@
 import CurrenciesList from './components/CurrenciesList'
 import Home from './components/Home'
 import Navbar from './components/Navbar'
+import PasswordForm from './components/PasswordForm'
 
 export default {
   name: 'App',
   components: {
     CurrenciesList,
     Home,
-    Navbar
+    Navbar,
+    PasswordForm
   },
   computed: {
     showList () {
       return this.$store.state.showList
+    },
+    wrongPassword () {
+      return this.$store.state.wrongPassword
     }
   },
   created () {

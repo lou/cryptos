@@ -41,6 +41,7 @@ export const defaultCurrency = {
 export const store = new Vuex.Store({
   state: {
     password: '',
+    wrongPassword: false,
     showList: false,
     sort: {
       by: 'cost',
@@ -58,15 +59,15 @@ export const store = new Vuex.Store({
 
       if (configStr) {
         let ciphertext = LZString.decompressFromEncodedURIComponent(configStr)
-        let bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '')
 
         try {
+          let bytes = CryptoJS.AES.decrypt(ciphertext.toString(), state.password)
           let config = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
 
-          this.replaceState({ ...state, ...config, showList: true })
+          this.replaceState({ ...state, ...config, showList: true, wrongPassword: false })
           this.dispatch('fetchCurrencies')
         } catch (e) {
-          console.log('WRONG PASSWORD')
+          this.replaceState({ ...state, wrongPassword: true, showList: true })
           // WRONG PASSWORD
         }
       } else {
@@ -83,6 +84,7 @@ export const store = new Vuex.Store({
     addCurrency (state, payload) {
       if (!_.isEmpty(payload.currency.key)) {
         payload.currency.id = state.currencies.length + 1
+        state.showList = true
         state.currencies.push(payload.currency)
         if (typeof payload.callback === 'function') {
           payload.callback()
@@ -97,6 +99,9 @@ export const store = new Vuex.Store({
     },
     removeCurrency (state, currency) {
       state.currencies = _.reject(state.currencies, { id: currency.id })
+    },
+    updatePassword (state, password) {
+      state.password = password
     },
     setAllCurrencies (state, currencies) {
       state.allCurrencies = currencies
@@ -121,6 +126,10 @@ export const store = new Vuex.Store({
       state.currencies.forEach((currency) => {
         dispatch('fetchCurrency', { currency, method: 'updateCurrency', bypassEncodeURL: true })
       })
+    },
+    updatePassword ({ commit }, payload) {
+      commit('updatePassword', payload.password)
+      commit('initialiseStore')
     }
   },
   getters: {

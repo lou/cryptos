@@ -4,7 +4,7 @@
       <b-navbar-brand href="#">
         <img class='navbar-brand-img' src="../assets/rocket.svg" alt="cryptos" width='32' height='32' />
         &nbsp;
-        Cryptos
+        Cryptolou
       </b-navbar-brand>
       <currency-modal
         type='add'

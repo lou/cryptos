@@ -22,6 +22,7 @@ yarn start
 - [x] refresh + auto refresh
 - [ ] Secure portfolio with password
 - [ ] URL shortner
+- [ ] Simple format + autolink info text
 - [ ] Change currency / locale
 - [ ] Animate loading dots
 - [ ] Fix vue-select CSS on tiny screens

@@ -17,6 +17,10 @@ button {
   }
 }
 
+.close, .v-select .dropdown-toggle .clear {
+  font-weight: normal;
+}
+
 .currency {
   &:not(:last-child) {
     border-bottom: 1px $gray-300 solid;

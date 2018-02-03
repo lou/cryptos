@@ -15,11 +15,14 @@ yarn start
 
 ## TODO
 
-- [ ] Design
-- [ ] Colored growths
-- [ ] Simple Format `currency.info`
-- [ ] URL encode/decode
+- [x] Design
+- [x] Colored growths
+- [x] Simple Format `currency.info`
+- [x] URL encode/decode
+- [x] refresh + auto refresh
 - [ ] Secure portfolio with password
 - [ ] URL shortner
 - [ ] Change currency / locale
-- [ ] refresh + auto refresh
+- [ ] Animate loading dots
+- [ ] Fix vue-select CSS on tiny screens
+- [ ] Home page

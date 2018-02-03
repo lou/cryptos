@@ -8,25 +8,32 @@
             {{ currency.coinmarketcap.name }}
           </strong>
           <div>
-            {{ formatNumber(currency.coinmarketcap.price_eur, { style: 'currency', currency: 'EUR' }) }}
-            <small>({{ formatNumber(currency.coinmarketcap.percent_change_24h / 100, { style: 'percent' }) }})</small>
+            <formatted-number :number="currency.coinmarketcap.price_eur" :options="{ style: 'currency', currency: 'EUR' }" />
+            &middot;
+            <formatted-number :number="currency.coinmarketcap.percent_change_24h / 100" :options="{ style: 'percent' }" :htmlOptions="{ colored: true }" />
           </div>
         </b-media>
       </b-col>
       <b-col cols='5' class='text-right'>
-        <strong>{{ formatNumber(value(currency), { style: 'currency', currency: 'EUR' }) }}</strong>
-        <div><small>{{ formatNumber(performance(currency), { style: 'percent' }) }}</small></div>
+        <strong>
+          <formatted-number :number="value(currency)" :options="{ style: 'currency', currency: 'EUR' }" />
+        </strong>
+        <div>
+          <formatted-number :number="performance(currency)" :options="{ style: 'percent' }" :htmlOptions="{ colored: true }" />
+        </div>
       </b-col>
     </b-row>
     <b-collapse :id="currency.id.toString()" class='currency-more'>
       <b-row class='pb-3'>
         <b-col cols='8'>
           <div>
-            <span class='text-muted'>quantity:</span> {{ formatNumber(currency.quantity) }}
+            <span class='text-muted'>quantity:</span>
+            <formatted-number :number="currency.quantity" />
           </div>
           <div>
-            <span class='text-muted'>cost:</span> {{ formatNumber(currency.cost, { style: 'currency', currency: 'EUR' }) }}
-            <small>({{ formatNumber(distribution(currency), { style: 'percent' }) }})</small>
+            <span class='text-muted'>cost:</span>
+            <formatted-number :number="currency.cost" :options="{ style: 'currency', currency: 'EUR' }" />
+            <small>(<formatted-number :number="distribution(currency)" :options="{ style: 'percent' }" />)</small>
           </div>
           <div v-if="tags(currency)"><span class='text-muted'>tags:</span> {{ tags(currency) }}</div>
           <div v-if="info(currency)"><span class='text-muted'>info:</span> {{ info(currency) }}</div>
@@ -44,16 +51,16 @@
 
 <script>
 import CurrencyModal from './CurrencyModal'
-import { Numbers } from '../mixins/Numbers'
+import FormattedNumber from './FormattedNumber'
 import { mapGetters } from 'vuex'
 import _ from 'lodash'
 
 export default {
   name: 'Currency',
   props: ['currency'],
-  mixins: [Numbers],
   components: {
-    CurrencyModal
+    CurrencyModal,
+    FormattedNumber
   },
   computed: {
     ...mapGetters(['total'])

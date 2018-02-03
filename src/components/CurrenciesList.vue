@@ -1,10 +1,9 @@
 <template>
   <b-container>
     <h3 class='mt-4 mb-5 text-center'>
-      {{ formatNumber(total.value, { style: 'currency', currency: 'EUR' }) }}
-      <small>
-        ({{ formatNumber(total.performance, { style: 'percent' }) }})
-      </small>
+      <formatted-number :number="total.value" :options="{ style: 'currency', currency: 'EUR' }" />
+      &middot;
+      <formatted-number :number="total.performance" :options="{ style: 'percent' }" :htmlOptions="{ colored: true }" />
     </h3>
     <b-row>
       <b-col cols='7' sm='8' md='6' lg='5'>
@@ -24,16 +23,16 @@
 import Currency from './Currency'
 import CurrenciesSort from './CurrenciesSort'
 import CurrenciesFilters from './CurrenciesFilters'
-import { Numbers } from '../mixins/Numbers'
+import FormattedNumber from './FormattedNumber'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'CurrenciesList',
-  mixins: [Numbers],
   components: {
     Currency,
     CurrenciesSort,
-    CurrenciesFilters
+    CurrenciesFilters,
+    FormattedNumber
   },
   computed: {
     ...mapGetters(['filteredCurrencies', 'total'])

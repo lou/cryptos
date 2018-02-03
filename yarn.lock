@@ -6705,7 +6705,7 @@ vue-loader@^13.3.0:
 
 "vue-select@https://github.com/lou/vue-select":
   version "2.4.0"
-  resolved "https://github.com/lou/vue-select#b0bba834c23d272fed2a93c06c8ed66f9e6eee69"
+  resolved "https://github.com/lou/vue-select#bfee4a0e2c1056717e3b51df8de4fac6d530b25f"
 
 vue-style-loader@^3.0.0, vue-style-loader@^3.0.1:
   version "3.0.3"

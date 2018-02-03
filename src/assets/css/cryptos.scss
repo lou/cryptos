@@ -17,7 +17,6 @@ button {
   }
 }
 
-
 .currency {
   &:not(:last-child) {
     border-bottom: 1px $gray-300 solid;
@@ -45,6 +44,11 @@ button {
   background-position: bottom right;
 }
 
+#refresh-button {
+  &:focus {
+    box-shadow: none;
+  }
+}
 
 #space {
   position: relative;

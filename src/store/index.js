@@ -40,6 +40,8 @@ export const defaultCurrency = {
 
 export const store = new Vuex.Store({
   state: {
+    updatedAt: null,
+    loading: false,
     password: '',
     wrongPassword: false,
     showList: false,
@@ -81,6 +83,12 @@ export const store = new Vuex.Store({
     updateTags (state, tags) {
       state.filters.tags = tags
     },
+    setUpdatedAt (state) {
+      state.updatedAt = new Date().getTime()
+    },
+    setLoading (state, loading) {
+      state.loading = loading
+    },
     addCurrency (state, payload) {
       if (!_.isEmpty(payload.currency.key)) {
         payload.currency.id = state.currencies.length + 1
@@ -114,17 +122,28 @@ export const store = new Vuex.Store({
       })
     },
     fetchCurrency ({ commit }, payload) {
-      axios.get(`https://api.coinmarketcap.com/v1/ticker/${payload.currency.key}/?convert=EUR`).then(response => {
+      return axios.get(`https://api.coinmarketcap.com/v1/ticker/${payload.currency.key}/?convert=EUR`).then(response => {
         payload.currency.coinmarketcap = response.data[0]
         commit(payload.method, {
           currency: payload.currency,
-          callback: payload.callback
+          callback: payload.callback,
+          bypassEncodeURL: payload.bypassEncodeURL
         })
       })
     },
-    fetchCurrencies ({ dispatch, state }) {
+    fetchCurrencies ({ dispatch, state, commit }) {
+      let promises = []
+
+      commit('setLoading', true)
       state.currencies.forEach((currency) => {
-        dispatch('fetchCurrency', { currency, method: 'updateCurrency', bypassEncodeURL: true })
+        promises.push(
+          dispatch('fetchCurrency', { currency, method: 'updateCurrency', bypassEncodeURL: true })
+        )
+      })
+
+      axios.all(promises).then(() => {
+        commit('setUpdatedAt')
+        commit('setLoading', false)
       })
     },
     updatePassword ({ commit }, payload) {
@@ -173,7 +192,7 @@ export const store = new Vuex.Store({
   }
 })
 
-const URLEncodeActions = ['allCurrencies', 'password', 'updateSort', 'updateTags', 'addCurrency', 'removeCurrency']
+const URLEncodeActions = ['allCurrencies', 'password', 'updateSort', 'updateTags', 'addCurrency', 'updateCurrency', 'removeCurrency']
 
 let URLEncodeState = (config) => {
   config = _.omit(config, ['password', 'allCurrencies'])

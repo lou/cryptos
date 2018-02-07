@@ -1,6 +1,6 @@
 <template>
   <span>
-    <span v-if="isNaN(number)">...</span>
+    <span v-if="isNaN(number)" class='loading'><span>.</span><span>.</span><span>.</span></span>
     <span v-else :class="{ 'text-success': positive, 'text-danger': negative }">{{formattedNumber()}}</span>
   </span>
 </template>

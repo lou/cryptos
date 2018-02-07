@@ -1,3 +1,5 @@
+@import "loading";
+
 html {
   height: 100%;
 }
@@ -14,6 +16,12 @@ body {
 button {
   &:focus {
     outline: none;
+  }
+}
+
+.navbar-brand {
+  strong {
+    vertical-align: bottom;
   }
 }
 

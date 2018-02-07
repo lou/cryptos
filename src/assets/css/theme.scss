@@ -2,16 +2,18 @@
 $white: #fff;
 $black: #000;
 $green: #00934F;
-$blue: #4A90E2;
+$blue: #0C62C8;
 $orange: #ed543f;
 $yellow: #ebbc4b;
 $red: #FF5A5F;
 
+$blue-dark: #02162D;
+
 
 $gray-100: #fefefe;
-$gray-200: #f3f3f3;
-$gray-300: #eee;
-$gray-600: #888;
+$gray-200: #f9f9fd;
+$gray-300: #eeeeff;
+$gray-600: #888a99;
 $gray-900: #333;
 
 // Set brand colors
@@ -21,7 +23,8 @@ $info: $white;
 $warning: $yellow;
 $danger: $red;
 
-$body-bg: $gray-100;
+$body-bg: $gray-200;
+// $body-bg: $blue-dark;
 
 $font-family-sans-serif: 'Pontano', Helvetica, Arial, sans-serif;
 

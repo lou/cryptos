@@ -22,15 +22,14 @@ yarn start
 - [x] refresh + auto refresh
 - [x] Secure portfolio with password
 - [x] Change currency / locale
-- [ ] Fix navbar buttons on tiny screens
+- [x] Fix navbar buttons on tiny screens
+- [x] Animate loading dots
 - [ ] Display error on wrong password
-- [ ] Enable/disable auto refresh
 - [ ] Home page
 - [ ] URL shortner
 - [ ] Simple format + autolink info text
-- [ ] Animate loading dots
 - [ ] Fix vue-select CSS on tiny screens
 - [ ] Handle errors on Ajax calls
 - [ ] Switch Theme (night/day)
 - [ ] Translations
-
+- [ ] Enable/disable auto refresh

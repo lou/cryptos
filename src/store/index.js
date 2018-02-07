@@ -249,7 +249,6 @@ let URLEncodeState = (state) => {
 
 store.subscribe((mutation, state) => {
   if (mutation.payload && !mutation.payload.bypassEncodeURL && _.includes(URLEncodeActions, mutation.type)) {
-    debugger
     let cyperText = CryptoJS.AES.encrypt(JSON.stringify(URLEncodeState(_.cloneDeep(state))), state.password).toString()
     let configString = LZString.compressToEncodedURIComponent(cyperText)
 

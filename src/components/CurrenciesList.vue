@@ -1,16 +1,23 @@
 <template>
   <b-container>
-    <h3 class='mt-4 mb-5 text-center'>
-      <formatted-number :number="total.value" :options="{ style: 'currency', currency: 'EUR' }" />
+    <h3 class='mt-4 mb-4 text-center'>
+      <formatted-number :number="total.value" :options="{ style: 'currency', currency: this.currency }" />
       &middot;
       <formatted-number :number="total.performance" :options="{ style: 'percent' }" :htmlOptions="{ colored: true }" />
       <b-btn id="refresh-button" @click="handleRefresh" class='btn btn-outline-primary'>
         <icon name="refresh" :spin="loading"></icon>
       </b-btn>
+      &nbsp;
       <b-tooltip target="refresh-button" placement="top">
         {{updatedAt}}
       </b-tooltip>
     </h3>
+    <div class='text-center mb-5'>
+      <currency-modal
+        type='add'
+        :button-label="$t('newCoin')"
+        button-variant='primary' />
+    </div>
     <b-row>
       <b-col cols='7' sm='8' md='6' lg='5'>
         <currencies-filters />
@@ -20,7 +27,7 @@
       </b-col>
     </b-row>
     <div class='mt-3'>
-      <currency v-for="currency in filteredCurrencies" :key="currency.id" :currency="currency" />
+      <currency v-for="currency in filteredCurrencies" :key="currency.id" :coin="currency" />
     </div>
   </b-container>
 </template>
@@ -30,6 +37,7 @@ import Currency from './Currency'
 import CurrenciesSort from './CurrenciesSort'
 import CurrenciesFilters from './CurrenciesFilters'
 import FormattedNumber from './FormattedNumber'
+import CurrencyModal from './CurrencyModal'
 import moment from 'moment'
 import { mapGetters } from 'vuex'
 
@@ -39,7 +47,8 @@ export default {
     Currency,
     CurrenciesSort,
     CurrenciesFilters,
-    FormattedNumber
+    FormattedNumber,
+    CurrencyModal
   },
   mounted () {
     this.interval = setInterval(() => {
@@ -55,7 +64,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['filteredCurrencies', 'total']),
+    ...mapGetters(['filteredCurrencies', 'total', 'currency']),
     loading () {
       return this.$store.state.loading
     },

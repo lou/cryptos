@@ -1,6 +1,6 @@
 <template>
   <b-form @submit.prevent="handleSubmit">
-    <b-form-group label="Currency:" label-for="currency_key">
+    <b-form-group label="Coin:" label-for="currency_key">
       <v-select
         id="curency_key"
         v-model="localCurrency.key"
@@ -8,7 +8,7 @@
         index="slug"
         label="name"
         searchable
-        placeholder="Choose a currency">
+        placeholder="Choose a coin">
       </v-select>
     </b-form-group>
     <b-form-group label="Quantity:" label-for="currency_quantity">

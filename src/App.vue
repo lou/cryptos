@@ -2,7 +2,7 @@
   <div class="full-height">
     <navbar />
     <div v-if="showList">
-      <password-form v-if="wrongPassword" />
+      <password-form v-if="needPassword" />
       <currencies-list v-else />
     </div>
     <home v-else />
@@ -27,8 +27,8 @@ export default {
     showList () {
       return this.$store.state.showList
     },
-    wrongPassword () {
-      return this.$store.state.wrongPassword
+    needPassword () {
+      return this.$store.state.locked || this.$store.state.updatingPassword
     }
   },
   created () {

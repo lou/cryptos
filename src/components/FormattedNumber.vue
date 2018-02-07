@@ -6,11 +6,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'FormattedNumber',
   props: ['number', 'options', 'htmlOptions'],
-  created () {
-
+  computed: {
+    ...mapGetters(['locale'])
   },
   data () {
     return {
@@ -29,7 +31,7 @@ export default {
           this.$data.negative = false
         }
       }
-      return parseFloat(this.number).toLocaleString('fr-FR', { maximumFractionDigits: 2, minimumFractionDigits: 0, ...this.options })
+      return parseFloat(this.number).toLocaleString(this.locale, { maximumFractionDigits: 2, minimumFractionDigits: 0, ...this.options })
     }
   }
 }

@@ -17,6 +17,10 @@ button {
   }
 }
 
+.fa-icon {
+  vertical-align: middle;
+}
+
 .close, .v-select .dropdown-toggle .clear {
   font-weight: normal;
 }
@@ -37,12 +41,16 @@ button {
   border-bottom: 1px $gray-300 solid;
 }
 
+.dropdown-item:focus {
+  outline: 0;
+}
+
 .full-height {
   height: 100%;
 }
 
 .modal-content {
-  background-image: url('./assets/astronaut.svg');
+  background-image: url('./assets/images/astronaut.svg');
   background-repeat: no-repeat;
   background-size: 100px 50px;
   background-position: bottom right;
@@ -66,7 +74,7 @@ button {
   right: 10px;
   width: 300px;
   height: 300px;
-  background: transparent url('./assets/moon.svg') no-repeat;
+  background: transparent url('./assets/images/moon.svg') no-repeat;
 }
 
 #rocket {
@@ -76,7 +84,7 @@ button {
   transform: rotate(10deg);
   width: 100px;
   height: 100px;
-  background: transparent url('./assets/rocket.svg') no-repeat;
+  background: transparent url('./assets/images/rocket.svg') no-repeat;
   z-index: 2;
 }
 
@@ -86,7 +94,7 @@ button {
   right: 32px;
   width: 40px;
   height: 40px;
-  background: transparent url('./assets/astronaut.svg') no-repeat;
+  background: transparent url('./assets/images/astronaut.svg') no-repeat;
   transform: rotate(44deg);
 }
 
@@ -97,7 +105,7 @@ button {
   width: 80px;
   height: 80px;
   opacity: 0.6;
-  background: transparent url('./assets/jupiter.svg') no-repeat;
+  background: transparent url('./assets/images/jupiter.svg') no-repeat;
   transform: rotate(-20deg);
 }
 
@@ -107,7 +115,7 @@ button {
   top: 20px;
   width: 120px;
   height: 100px;
-  background: transparent url('./assets/saturn.svg') no-repeat;
+  background: transparent url('./assets/images/saturn.svg') no-repeat;
 }
 
 #planet-earth {
@@ -116,7 +124,7 @@ button {
   bottom: -250px;
   width: 600px;
   height: 600px;
-  background: transparent url('./assets/planet-earth.svg') no-repeat;
+  background: transparent url('./assets/images/planet-earth.svg') no-repeat;
 }
 
 #space-station {
@@ -125,7 +133,7 @@ button {
   bottom: 370px;
   width: 45px;
   height: 45px;
-  background: transparent url('./assets/space-station.svg') no-repeat;
+  background: transparent url('./assets/images/space-station.svg') no-repeat;
   transform: rotate(75deg);
 }
 
@@ -135,4 +143,25 @@ button {
   top: 40px;
   width: 100%;
   z-index: 4;
+}
+
+@include media-breakpoint-down(sm) {
+  .navbar-nav {
+    flex-direction: row;
+    .dropdown {
+      position: static;
+    }
+    .dropdown-menu {
+      width: 100%;
+      position: absolute;
+      right: 0;
+      left: auto;
+    }
+    .nav-item {
+      &:not(:last-child) {
+        margin-right: 1em;
+      }
+
+    }
+  }
 }

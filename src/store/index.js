@@ -11,21 +11,21 @@ export const sorts = [
   {
     key: 'cost',
     name: 'Cost',
-    sortFunction: (currency) => parseFloat(currency.cost)
+    sortFunction: (coin) => parseFloat(coin.cost)
   }, {
     key: 'performance',
     name: 'Performance',
-    sortFunction: (currency) => {
-      return (parseFloat(currency.coinmarketcap.price_eur) * parseFloat(currency.quantity) - currency.cost) / currency.cost
+    sortFunction: (coin, currency) => {
+      return (parseFloat(coin.coinmarketcap[`price_${currency.toLowerCase()}`]) * parseFloat(coin.quantity) - coin.cost) / coin.cost
     }
   }, {
     key: 'value',
     name: 'Value',
-    sortFunction: (currency) => parseFloat(currency.coinmarketcap.price_eur) * parseFloat(currency.quantity)
+    sortFunction: (coin, currency) => parseFloat(coin.coinmarketcap[`price_${currency.toLowerCase()}`]) * parseFloat(coin.quantity)
   }, {
-    key: 'price_eur',
+    key: 'price',
     name: 'Price',
-    sortFunction: (currency) => parseFloat(currency.coinmarketcap.price_eur)
+    sortFunction: (coin, currency) => parseFloat(coin.coinmarketcap[`price_${currency.toLowerCase()}`])
   }
 ]
 
@@ -38,12 +38,42 @@ export const defaultCurrency = {
   tags: []
 }
 
+export const locales = {
+  'en-US': {
+    currency: 'USD',
+    text: 'English (US)'
+  },
+  'en-GB': {
+    currency: 'GBP',
+    text: 'English (UK)'
+  },
+  'fr-FR': {
+    currency: 'EUR',
+    text: 'Français'
+  },
+  'es-ES': {
+    currency: 'EUR',
+    text: 'Español'
+  }
+}
+
+export const availableLocales = _.map(locales, (value, key) => key)
+
+export const localeToCurrency = {
+  'en-US': 'USD',
+  'en-GB': 'GBP',
+  'fr-FR': 'EUR',
+  'es-ES': 'EUR'
+}
+
 export const store = new Vuex.Store({
   state: {
+    locale: 'en-US',
     updatedAt: null,
     loading: false,
     password: '',
-    wrongPassword: false,
+    updatingPassword: false,
+    locked: false,
     showList: false,
     sort: {
       by: 'cost',
@@ -56,7 +86,7 @@ export const store = new Vuex.Store({
     currencies: []
   },
   mutations: {
-    initialiseStore (state) {
+    initialiseStore (state, payload) {
       const configStr = document.location.hash.substr(1)
 
       if (configStr) {
@@ -66,15 +96,19 @@ export const store = new Vuex.Store({
           let bytes = CryptoJS.AES.decrypt(ciphertext.toString(), state.password)
           let config = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
 
-          this.replaceState({ ...state, ...config, showList: true, wrongPassword: false })
+          this.replaceState({ ...state, ...config, showList: true, locked: false, updatingPassword: false })
+          payload.i18n.locale = config.locale ? config.locale.split('-')[0] : 'en'
           this.dispatch('fetchCurrencies')
         } catch (e) {
-          this.replaceState({ ...state, wrongPassword: true, showList: true })
+          this.replaceState({ ...state, locked: true, showList: true })
           // WRONG PASSWORD
         }
       } else {
         this.replaceState({ ...state, showList: false })
       }
+    },
+    setLocale (state, locale) {
+      state.locale = locale
     },
     updateSort (state, payload) {
       state.sort.ascending = payload === state.sort.by ? !state.sort.ascending : false
@@ -88,6 +122,9 @@ export const store = new Vuex.Store({
     },
     setLoading (state, loading) {
       state.loading = loading
+    },
+    setUpdatingPassword (state, updatingPassword) {
+      state.updatingPassword = updatingPassword
     },
     addCurrency (state, payload) {
       if (!_.isEmpty(payload.currency.key)) {
@@ -108,8 +145,8 @@ export const store = new Vuex.Store({
     removeCurrency (state, currency) {
       state.currencies = _.reject(state.currencies, { id: currency.id })
     },
-    updatePassword (state, password) {
-      state.password = password
+    setPassword (state, payload) {
+      state.password = payload.password
     },
     setAllCurrencies (state, currencies) {
       state.allCurrencies = currencies
@@ -121,8 +158,8 @@ export const store = new Vuex.Store({
         commit('setAllCurrencies', response.data)
       })
     },
-    fetchCurrency ({ commit }, payload) {
-      return axios.get(`https://api.coinmarketcap.com/v1/ticker/${payload.currency.key}/?convert=EUR`).then(response => {
+    fetchCurrency ({ commit, state, getters }, payload) {
+      return axios.get(`https://api.coinmarketcap.com/v1/ticker/${payload.currency.key}/?convert=${getters.currency}`).then(response => {
         payload.currency.coinmarketcap = response.data[0]
         commit(payload.method, {
           currency: payload.currency,
@@ -146,14 +183,14 @@ export const store = new Vuex.Store({
         commit('setLoading', false)
       })
     },
-    updatePassword ({ commit }, payload) {
-      commit('updatePassword', payload.password)
-      commit('initialiseStore')
+    updatePassword ({ commit, state }, payload) {
+      commit('setPassword', { password: payload.password, bypassEncodeURL: !state.updatingPassword })
+      commit('initialiseStore', { i18n: payload.i18n })
     }
   },
   getters: {
     total (state, getters) {
-      let totalValue = _.sumBy(getters.filteredCurrencies, (c) => c.coinmarketcap.price_eur * c.quantity || 0)
+      let totalValue = _.sumBy(getters.filteredCurrencies, (c) => c.coinmarketcap[`price_${getters.currency.toLowerCase()}`] * c.quantity || 0)
       let totalCost = _.sumBy(getters.filteredCurrencies, (c) => parseFloat(c.cost) || 0)
 
       return {
@@ -162,6 +199,12 @@ export const store = new Vuex.Store({
         performance: (totalValue - totalCost) / totalCost
       }
     },
+    currency (state) {
+      return locales[state.locale].currency
+    },
+    locale (state) {
+      return state.locale
+    },
     tags (state) {
       return _.uniq(
         _.flatten(
@@ -169,12 +212,12 @@ export const store = new Vuex.Store({
         )
       )
     },
-    filteredCurrencies (state) {
+    filteredCurrencies (state, getters) {
       let filteredCurrencies = state.currencies.sort((a, b) => {
         const sortBy = _.find(sorts, { key: state.sort.by })
 
-        if (sortBy.sortFunction(a) > sortBy.sortFunction(b)) { return 1 }
-        if (sortBy.sortFunction(a) < sortBy.sortFunction(b)) { return -1 }
+        if (sortBy.sortFunction(a, getters.currency) > sortBy.sortFunction(b, getters.currency)) { return 1 }
+        if (sortBy.sortFunction(a, getters.currency) < sortBy.sortFunction(b, getters.currency)) { return -1 }
         return 0
       })
 
@@ -192,20 +235,21 @@ export const store = new Vuex.Store({
   }
 })
 
-const URLEncodeActions = ['allCurrencies', 'password', 'updateSort', 'updateTags', 'addCurrency', 'updateCurrency', 'removeCurrency']
+const URLEncodeActions = ['setPassword', 'updateSort', 'updateTags', 'addCurrency', 'updateCurrency', 'removeCurrency', 'setLocale']
 
-let URLEncodeState = (config) => {
-  config = _.omit(config, ['password', 'allCurrencies'])
+let URLEncodeState = (state) => {
+  state = _.pick(state, ['currencies', 'filters', 'sort', 'locale'])
 
-  config.currencies = _.map(config.currencies, (currency) => {
+  state.currencies = _.map(state.currencies, (currency) => {
     currency.coinmarketcap = {}
     return currency
   })
-  return config
+  return state
 }
 
 store.subscribe((mutation, state) => {
   if (mutation.payload && !mutation.payload.bypassEncodeURL && _.includes(URLEncodeActions, mutation.type)) {
+    debugger
     let cyperText = CryptoJS.AES.encrypt(JSON.stringify(URLEncodeState(_.cloneDeep(state))), state.password).toString()
     let configString = LZString.compressToEncodedURIComponent(cyperText)
 

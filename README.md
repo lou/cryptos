@@ -20,10 +20,17 @@ yarn start
 - [x] Simple Format `currency.info`
 - [x] URL encode/decode
 - [x] refresh + auto refresh
-- [ ] Secure portfolio with password
+- [x] Secure portfolio with password
+- [x] Change currency / locale
+- [ ] Fix navbar buttons on tiny screens
+- [ ] Display error on wrong password
+- [ ] Enable/disable auto refresh
+- [ ] Home page
 - [ ] URL shortner
 - [ ] Simple format + autolink info text
-- [ ] Change currency / locale
 - [ ] Animate loading dots
 - [ ] Fix vue-select CSS on tiny screens
-- [ ] Home page
+- [ ] Handle errors on Ajax calls
+- [ ] Switch Theme (night/day)
+- [ ] Translations
+

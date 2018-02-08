@@ -17,11 +17,13 @@ import lock from '@fortawesome/fontawesome-free-solid/faLock'
 import coffee from '@fortawesome/fontawesome-free-solid/faCoffee'
 import sync from '@fortawesome/fontawesome-free-solid/faSyncAlt'
 import cog from '@fortawesome/fontawesome-free-solid/faCog'
+import rocket from '@fortawesome/fontawesome-free-solid/faRocket'
+import beer from '@fortawesome/fontawesome-free-solid/faBeer'
 
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)
 
-fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog)
+fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog, rocket, beer)
 
 Vue.config.productionTip = false
 

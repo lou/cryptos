@@ -24,6 +24,8 @@ yarn start
 - [x] Change currency / locale
 - [x] Fix navbar buttons on tiny screens
 - [x] Animate loading dots
+- [ ] Possibility to change currency instead of language
+- [ ] Use Bcrypt for password encryption
 - [ ] Display error on wrong password
 - [ ] Home page
 - [ ] URL shortner
@@ -31,5 +33,4 @@ yarn start
 - [ ] Fix vue-select CSS on tiny screens
 - [ ] Handle errors on Ajax calls
 - [ ] Switch Theme (night/day)
-- [ ] Translations
 - [ ] Enable/disable auto refresh

@@ -3,15 +3,25 @@ import App from './App'
 import BootstrapVue from 'bootstrap-vue'
 import VueI18n from 'vue-i18n'
 import { store } from './store'
-
-import 'vue-awesome/icons'
-import Icon from 'vue-awesome/components/Icon'
 import messages from './locales'
 
-Vue.component('icon', Icon)
+import fontawesome from '@fortawesome/fontawesome'
+
+import osi from '@fortawesome/fontawesome-free-brands/faOsi'
+import pencil from '@fortawesome/fontawesome-free-solid/faPencilAlt'
+import trash from '@fortawesome/fontawesome-free-solid/faTrashAlt'
+import heart from '@fortawesome/fontawesome-free-solid/faHeart'
+import shield from '@fortawesome/fontawesome-free-solid/faShieldAlt'
+import privacy from '@fortawesome/fontawesome-free-solid/faUserSecret'
+import lock from '@fortawesome/fontawesome-free-solid/faLock'
+import coffee from '@fortawesome/fontawesome-free-solid/faCoffee'
+import sync from '@fortawesome/fontawesome-free-solid/faSyncAlt'
+import cog from '@fortawesome/fontawesome-free-solid/faCog'
 
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)
+
+fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog)
 
 Vue.config.productionTip = false
 

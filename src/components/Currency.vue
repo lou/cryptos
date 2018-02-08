@@ -52,9 +52,9 @@
         </b-col>
         <b-col cols='4' class='text-right'>
           <b-button variant="outline-danger" size='sm' @click="removeCurrency(coin)">
-            <icon name="trash"></icon>
+            <font-awesome-icon icon="trash-alt" />
           </b-button>
-          <currency-modal type='update' :currency="coin" button-variant='outline-primary' button-icon='pencil' button-size='sm' />
+          <currency-modal type='update' :currency="coin" button-variant='outline-primary' button-icon='pencil-alt' button-size='sm' />
         </b-col>
       </b-row>
     </b-collapse>
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import CurrencyModal from './CurrencyModal'
 import FormattedNumber from './FormattedNumber'
 import { mapGetters } from 'vuex'
@@ -72,7 +73,8 @@ export default {
   props: ['coin'],
   components: {
     CurrencyModal,
-    FormattedNumber
+    FormattedNumber,
+    FontAwesomeIcon
   },
   computed: {
     ...mapGetters(['total', 'currency'])

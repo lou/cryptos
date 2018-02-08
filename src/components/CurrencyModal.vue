@@ -5,7 +5,7 @@
       @click="modalVisible = true"
       :size="buttonSize"
       :disabled="isAllCurrenciesEmpty">
-      <icon v-if="buttonIcon" :name="buttonIcon"></icon>
+      <font-awesome-icon v-if="buttonIcon" :icon="buttonIcon" />
       {{ buttonLabel }}
     </b-button>
     <b-modal
@@ -25,12 +25,13 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import CurrencyForm from './CurrencyForm'
 
 export default {
   name: 'AddCurrency',
   props: ['type', 'currency', 'button-variant', 'button-label', 'button-icon', 'button-size'],
-  components: { CurrencyForm },
+  components: { CurrencyForm, FontAwesomeIcon },
   data () {
     return {
       modalVisible: false,

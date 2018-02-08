@@ -20,10 +20,10 @@
           &nbsp;
           <b-nav-item-dropdown no-caret right v-if="!locked">
             <template slot="button-content">
-              <icon name="gear" scale="1.3"></icon>
+              <font-awesome-icon icon="cog" transform="grow-2" />
             </template>
             <b-dropdown-item  @click="setPassword">
-              <icon name="lock"></icon>
+              <font-awesome-icon icon="lock" />
               &nbsp;
               {{ lockText }}
             </b-dropdown-item>
@@ -35,12 +35,14 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { availableLocales, locales } from '../store'
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Navbar',
+  components: { FontAwesomeIcon },
   computed: {
     ...mapGetters(['locale']),
     availableLocales () {

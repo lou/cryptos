@@ -5,7 +5,7 @@
       &middot;
       <formatted-number :number="total.performance" :options="{ style: 'percent' }" :htmlOptions="{ colored: true }" />
       <b-btn id="refresh-button" @click="handleRefresh" class='btn btn-outline-primary'>
-        <icon name="refresh" :spin="loading"></icon>
+        <font-awesome-icon icon="sync-alt" :spin="loading" />
       </b-btn>
       &nbsp;
       <b-tooltip target="refresh-button" placement="top">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import Currency from './Currency'
 import CurrenciesSort from './CurrenciesSort'
 import CurrenciesFilters from './CurrenciesFilters'
@@ -48,7 +49,8 @@ export default {
     CurrenciesSort,
     CurrenciesFilters,
     FormattedNumber,
-    CurrencyModal
+    CurrencyModal,
+    FontAwesomeIcon
   },
   mounted () {
     this.interval = setInterval(() => {

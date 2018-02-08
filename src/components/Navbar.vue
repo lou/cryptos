@@ -10,11 +10,12 @@
         <b-navbar-nav class='ml-auto'>
           <b-nav-item-dropdown no-caret right>
             <template slot="button-content">
-              <img :src="require(`../assets/images/flags/${this.locale}.svg`)" width='20' height='15' />
+              {{ getSymbolFromCurrency(currency) }}
+              {{ currency }}
             </template>
-            <b-dropdown-item v-for="locale in availableLocales" :key="locale" @click="setLocale(locale)">
-              <img :src="require(`../assets/images/flags/${locale}.svg`)" width='20' height='15' />
-              {{locales[locale].text}}
+            <b-dropdown-item v-for="currency in availableCurrencies" :key="currency" @click="setCurrency(currency)">
+              {{ getSymbolFromCurrency(currency) }}
+              <span class='text-muted'>&middot;&nbsp;{{ currency }}</span>
             </b-dropdown-item>
           </b-nav-item-dropdown>
           &nbsp;
@@ -36,7 +37,8 @@
 
 <script>
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-import { availableLocales, locales } from '../store'
+import getSymbolFromCurrency from 'currency-symbol-map'
+import { availableCurrencies } from '../store'
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
 
@@ -44,24 +46,23 @@ export default {
   name: 'Navbar',
   components: { FontAwesomeIcon },
   computed: {
-    ...mapGetters(['locale']),
-    availableLocales () {
-      return _.without(availableLocales, this.locale)
-    },
-    locales () {
-      return locales
+    ...mapGetters(['currency']),
+    availableCurrencies () {
+      return _.without(availableCurrencies, this.currency)
     },
     locked () {
       return this.$store.state.locked
     },
     lockText () {
-      return _.isEmpty(this.$store.state.password) ? this.$i18n.t('setPassword') : this.$i18n.t('changePassword')
+      return _.isEmpty(this.$store.state.password) ? 'Set Password' : 'Change Password'
     }
   },
   methods: {
-    setLocale (locale) {
-      this.$i18n.locale = locale.split('-')[0]
-      this.$store.commit('setLocale', locale)
+    getSymbolFromCurrency (currency) {
+      return getSymbolFromCurrency(currency)
+    },
+    setCurrency (currency) {
+      this.$store.commit('setCurrency', currency)
       this.$store.dispatch('fetchCurrencies')
     },
     setPassword () {

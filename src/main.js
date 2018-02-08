@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import BootstrapVue from 'bootstrap-vue'
-import VueI18n from 'vue-i18n'
 import { store } from './store'
-import messages from './locales'
 
 import fontawesome from '@fortawesome/fontawesome'
 
@@ -21,24 +19,17 @@ import rocket from '@fortawesome/fontawesome-free-solid/faRocket'
 import beer from '@fortawesome/fontawesome-free-solid/faBeer'
 
 Vue.use(BootstrapVue)
-Vue.use(VueI18n)
 
 fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog, rocket, beer)
 
 Vue.config.productionTip = false
 
-const i18n = new VueI18n({
-  fallbackLocale: 'en',
-  messages
-})
-
 /* eslint-disable no-new */
 new Vue({
-  i18n,
   el: '#app',
   store,
   beforeCreate () {
-    this.$store.commit('initialiseStore', { i18n })
+    this.$store.commit('initialiseStore')
   },
   components: { App },
   template: '<App/>'

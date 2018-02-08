@@ -21,6 +21,7 @@
     "bootstrap": "^4.0.0",
     "bootstrap-vue": "^1.4.1",
     "crypto-js": "^3.1.9-1",
+    "currency-symbol-map": "^4.0.3",
     "element-ui": "^2.0.11",
     "lodash": "^4.17.4",
     "lz-string": "^1.4.4",
@@ -30,7 +31,6 @@
     "vue": "^2.5.2",
     "vue-flag-icon": "^1.0.6",
     "vue-gh-pages": "https://github.com/lou/vue-gh-pages#regex-refacto",
-    "vue-i18n": "^7.4.2",
     "vue-select": "https://github.com/lou/vue-select",
     "vuex": "^3.0.1"
   },

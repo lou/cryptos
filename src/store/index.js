@@ -38,37 +38,46 @@ export const defaultCurrency = {
   tags: []
 }
 
-export const locales = {
-  'en-US': {
-    currency: 'USD',
-    text: 'English (US)'
-  },
-  'en-GB': {
-    currency: 'GBP',
-    text: 'English (UK)'
-  },
-  'fr-FR': {
-    currency: 'EUR',
-    text: 'Français'
-  },
-  'es-ES': {
-    currency: 'EUR',
-    text: 'Español'
-  }
+export const currencyToLocale = {
+  'USD': 'en-US',
+  'EUR': 'fr-FR',
+  'GBP': 'en-GB',
+  'AUD': 'en-AU',
+  'BRL': 'pt-BR',
+  'CAD': 'en-CA',
+  'CLP': 'es-CL',
+  'CNY': 'zh-HK',
+  'CZK': 'cs-CZ',
+  'DKK': 'da-DK',
+  'HKD': 'en-HK',
+  'HUF': 'hu-HU',
+  'IDR': 'id-ID',
+  'ILS': 'he-IL',
+  'INR': 'en-IN',
+  'JPY': 'ja-JP',
+  'KRW': 'ko-KR',
+  'MXN': 'es-MX',
+  'MYR': 'ms-MY',
+  'NOK': 'no-NO',
+  'NZD': 'en-NZ',
+  'PHP': 'en-PH',
+  'PKR': 'en-PK',
+  'PLN': 'pl-PL',
+  'RUB': 'ru-RU',
+  'SEK': 'sv-SE',
+  'SGD': 'en-SG',
+  'THB': 'th-TH',
+  'TRY': 'tr-TR',
+  'TWD': 'zh-TW',
+  'ZAR': 'en-ZA',
+  'CHF': 'de-CH'
 }
 
-export const availableLocales = _.map(locales, (value, key) => key)
-
-export const localeToCurrency = {
-  'en-US': 'USD',
-  'en-GB': 'GBP',
-  'fr-FR': 'EUR',
-  'es-ES': 'EUR'
-}
+export const availableCurrencies = _.map(currencyToLocale, (value, key) => key)
 
 export const store = new Vuex.Store({
   state: {
-    locale: 'en-US',
+    currency: 'USD',
     updatedAt: null,
     loading: false,
     password: '',
@@ -97,7 +106,6 @@ export const store = new Vuex.Store({
           let config = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
 
           this.replaceState({ ...state, ...config, showList: true, locked: false, updatingPassword: false })
-          payload.i18n.locale = config.locale ? config.locale.split('-')[0] : 'en'
           this.dispatch('fetchCurrencies')
         } catch (e) {
           this.replaceState({ ...state, locked: true, showList: true })
@@ -107,8 +115,8 @@ export const store = new Vuex.Store({
         this.replaceState({ ...state, showList: false })
       }
     },
-    setLocale (state, locale) {
-      state.locale = locale
+    setCurrency (state, currency) {
+      state.currency = currency
     },
     updateSort (state, payload) {
       state.sort.ascending = payload === state.sort.by ? !state.sort.ascending : false
@@ -185,7 +193,7 @@ export const store = new Vuex.Store({
     },
     updatePassword ({ commit, state }, payload) {
       commit('setPassword', { password: payload.password, bypassEncodeURL: !state.updatingPassword })
-      commit('initialiseStore', { i18n: payload.i18n })
+      commit('initialiseStore')
     }
   },
   getters: {
@@ -200,10 +208,10 @@ export const store = new Vuex.Store({
       }
     },
     currency (state) {
-      return locales[state.locale].currency
+      return state.currency
     },
     locale (state) {
-      return state.locale
+      return currencyToLocale[state.currency]
     },
     tags (state) {
       return _.uniq(
@@ -235,10 +243,10 @@ export const store = new Vuex.Store({
   }
 })
 
-const URLEncodeActions = ['setPassword', 'updateSort', 'updateTags', 'addCurrency', 'updateCurrency', 'removeCurrency', 'setLocale']
+const URLEncodeActions = ['setPassword', 'updateSort', 'updateTags', 'addCurrency', 'updateCurrency', 'removeCurrency', 'setCurrency']
 
 let URLEncodeState = (state) => {
-  state = _.pick(state, ['currencies', 'filters', 'sort', 'locale'])
+  state = _.pick(state, ['currencies', 'filters', 'sort', 'currency'])
 
   state.currencies = _.map(state.currencies, (currency) => {
     currency.coinmarketcap = {}

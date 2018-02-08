@@ -19,7 +19,7 @@ yarn start
 - [x] Colored growths
 - [x] Simple Format `currency.info`
 - [x] URL encode/decode
-- [x] refresh + auto refresh
+- [x] refresh
 - [x] Secure portfolio with password
 - [x] Change currency / locale
 - [x] Fix navbar buttons on tiny screens
@@ -31,6 +31,5 @@ yarn start
 - [ ] URL shortner
 - [ ] Simple format + autolink info text
 - [ ] Fix vue-select CSS on tiny screens
-- [ ] Handle errors on Ajax calls
+- [ ] Handle errors on Ajax calls (429)
 - [ ] Switch Theme (night/day)
-- [ ] Enable/disable auto refresh

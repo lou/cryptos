@@ -24,7 +24,6 @@
     "element-ui": "^2.0.11",
     "lodash": "^4.17.4",
     "lz-string": "^1.4.4",
-    "moment": "^2.20.1",
     "node-sass": "^4.7.2",
     "remote": "^0.2.6",
     "sass-loader": "^6.0.6",

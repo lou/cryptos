@@ -1,24 +1,21 @@
 <template>
   <b-container>
-    <h3 class='mt-4 mb-4 text-center'>
+    <h3 class='pt-5 pb-4 text-center'>
       <formatted-number :number="total.value" :options="{ style: 'currency', currency: this.currency }" />
       &middot;
       <formatted-number :number="total.performance" :options="{ style: 'percent' }" :htmlOptions="{ colored: true }" />
-      <b-btn id="refresh-button" @click="handleRefresh" class='btn btn-outline-primary'>
+      <b-btn @click="handleRefresh" class='btn btn-outline-primary'>
         <font-awesome-icon icon="sync-alt" :spin="loading" />
       </b-btn>
       &nbsp;
-      <b-tooltip target="refresh-button" placement="top">
-        {{updatedAt}}
-      </b-tooltip>
     </h3>
     <div class='text-center mb-5'>
       <currency-modal
         type='add'
-        :button-label="$t('newCoin')"
+        button-label="New coin"
         button-variant='primary' />
     </div>
-    <b-row>
+    <b-row class='pt-4'>
       <b-col cols='7' sm='8' md='6' lg='5'>
         <currencies-filters />
       </b-col>
@@ -39,7 +36,6 @@ import CurrenciesSort from './CurrenciesSort'
 import CurrenciesFilters from './CurrenciesFilters'
 import FormattedNumber from './FormattedNumber'
 import CurrencyModal from './CurrencyModal'
-import moment from 'moment'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -69,10 +65,6 @@ export default {
     ...mapGetters(['filteredCurrencies', 'total', 'currency']),
     loading () {
       return this.$store.state.loading
-    },
-    updatedAt () {
-      moment.relativeTimeThreshold('ss', 0)
-      return `Updated ${moment(moment(this.now).diff(this.$store.state.updatedAt)).format('s')} seconds ago`
     }
   },
   methods: {

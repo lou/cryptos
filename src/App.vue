@@ -33,9 +33,6 @@ export default {
   },
   created () {
     this.$store.dispatch('fetchAllCurrencies')
-    setInterval(() => {
-      this.$store.dispatch('fetchCurrencies')
-    }, 59000)
     window.onpopstate = (event) => {
       this.$store.commit('initialiseStore')
     }

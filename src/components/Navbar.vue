@@ -2,12 +2,12 @@
   <div>
     <b-navbar toggleable="md" type="dark" variant="primary">
       <b-container>
-        <b-navbar-brand href="#">
-          <img class='navbar-brand-img' src="../assets/images/rocket.svg" alt="cryptos" width='32' height='32' />
+        <b-navbar-brand href='/'>
+          <img class='navbar-brand-img' src="../assets/images/telescope.svg" alt="cryptos" width='32' height='32' />
           &nbsp;
           <strong>CRYPTOLOU</strong>
         </b-navbar-brand>
-        <b-navbar-nav class='ml-auto'>
+        <b-navbar-nav class='ml-auto' v-if="showList">>
           <b-nav-item-dropdown no-caret right>
             <template slot="button-content">
               {{ getSymbolFromCurrency(currency) }}
@@ -19,7 +19,7 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
           &nbsp;
-          <b-nav-item-dropdown no-caret right v-if="!locked">
+          <b-nav-item-dropdown no-caret right>
             <template slot="button-content">
               <font-awesome-icon icon="cog" transform="grow-2" />
             </template>
@@ -47,6 +47,9 @@ export default {
   components: { FontAwesomeIcon },
   computed: {
     ...mapGetters(['currency']),
+    showList () {
+      return this.$store.state.showList
+    },
     availableCurrencies () {
       return _.without(availableCurrencies, this.currency)
     },

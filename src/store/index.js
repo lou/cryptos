@@ -115,6 +115,8 @@ export const store = new Vuex.Store({
         this.replaceState({ ...state, showList: false })
       }
     },
+    goToHomePage (state) {
+    },
     setCurrency (state, currency) {
       state.currency = currency
     },

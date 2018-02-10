@@ -1,33 +1,37 @@
 <template>
-  <div>
-    <div class='pattern'>
-      <div class='container text-center pt-5 pb-5'>
-        <div class='title'>
-          <h1 class='pt-5'>Welcome to CRYPTOLOU</h1>
-          <h2 class='pt-2'>The simpliest and most secure way to track your cryptocurrencies</h2>
-        </div>
-        <div class='pt-5 pb-2'>
-          <currency-modal
-            type='add'
-            button-label='Start Your Portfolio'
-            button-icon="rocket"
-            button-variant="info"
-            button-size="lg" />
-        </div>
-        <p class='pb-5'>
-          No registration needed and 100% free
-        </p>
+  <div class='full-height'>
+    <div class='night-stars'>
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div class='title'>
+        <h1 class='pt-5'>THE MOST SECURE WAY TO TRACK YOUR CRYPTOS</h1>
+        <h2 class='pt-2'>Keep your portfolio at home</h2>
       </div>
+      <div class='cta'>
+        <div id='arrow'></div>
+        <div id='to-the-moon'>To the moon!</div>
+        <currency-modal
+          type='add'
+          button-label='Start Your Portfolio'
+          button-icon="space-shuttle"
+          button-variant="info"
+          button-size="lg" />
+      </div>
+      <p>
+        No registration needed and 100% free
+      </p>
     </div>
 
     <b-container class="text-center explanation p-5">
       <b-row>
-        <b-col md="4" sm='6' xs="12">
+        <b-col md="6" xs="12">
           <div class='explanation-item'>
-            <font-awesome-icon icon="coffee" size="3x" />
+            <div class='icon'>
+              <font-awesome-icon icon="coffee" size="3x" />
+            </div>
             <h3>SIMPLE</h3>
             <p>
-              There is no registration, just start your portfolio.
+              You do not have to register, just start your portfolio.
               <br />
               We handle 1500+ cryptocurrencies.
               <br />
@@ -35,9 +39,11 @@
             </p>
           </div>
         </b-col>
-        <b-col md="4" sm='6' xs="12">
+        <b-col md="6" xs="12">
           <div class='explanation-item'>
-            <font-awesome-icon icon="shield-alt" size="3x" />
+            <div class='icon'>
+              <font-awesome-icon icon="shield-alt" size="3x" />
+            </div>
             <h3>SECURE</h3>
             <p>
               Cryptolou does not store your portfolio on any database.
@@ -48,56 +54,84 @@
             </p>
           </div>
         </b-col>
-        <b-col md="4" sm='6' xs="12">
+        <b-col md="6" xs="12">
           <div class='explanation-item'>
-            <font-awesome-icon icon="user-secret" size="3x" />
+            <div class='icon'>
+              <font-awesome-icon icon="user-secret" size="3x" />
+            </div>
             <h3>PRIVACY MATTERS</h3>
             <p>
               We can't access your data so we can't sell it.
               <br />
-              Moreover we do not use any cookies or any third party to track your behaviour on Cryptolou.com.
+              You own your data.
+              <br />
+              Moreover we do not use any third party libraries such as Goolge Anlaytics to track your behaviour on Cryptolou.com.
             </p>
           </div>
         </b-col>
-        <b-col md="4" sm='6' xs="12">
+        <b-col md="6" xs="12">
           <div class='explanation-item'>
-            <font-awesome-icon icon="heart" size="3x" />
+            <div class='icon'>
+              <font-awesome-icon icon="heart" size="3x" />
+            </div>
             <h3>FREE</h3>
             <p>
               Cryptolou is and will always be completely free of charge and is also 100% ad-free.
             </p>
           </div>
         </b-col>
-        <b-col md="4" sm='6' xs="12">
+        <b-col md="6" xs="12">
           <div class='explanation-item'>
-            <font-awesome-icon :icon="['fab', 'osi']" size="3x" />
+            <div class='icon'>
+              <font-awesome-icon :icon="['fab', 'osi']" size="3x" />
+            </div>
             <h3>OPEN-SOURCE</h3>
             <p>
-              The entire codebase of Cryptolou is Open-Source and freely accessible at <a href='https://github.com/lou/cryptos'>https://github.com/lou/cryptos</a>
-              Feel free to submit code if you are a developer.
+              The entire codebase of Cryptolou is Open-Source and freely accessible at <a href='https://github.com/lou/cryptos'>https://github.com/lou/cryptos</a>.
+              <br />
+              Feel free to submit code.
+              <br />
               You can also report any bug or request a feature at <a href='https://github.com/lou/cryptos/issues'>https://github.com/lou/cryptos/issues</a>
             </p>
           </div>
         </b-col>
-        <b-col md="4" sm='6' xs="12">
+        <b-col md="6" xs="12">
           <div class='explanation-item'>
-            <font-awesome-icon icon="beer" size="3x" />
+            <div class='icon'>
+              <font-awesome-icon icon="cogs" size="3x" />
+            </div>
+            <h3>UNDER THE HOOD</h3>
+            <div class='text-left'>
+              We have built Cryptolou thanks to:
+              <ul class='mt-2'>
+                <li><a href="https://coinmarketcap.com/api">Coinmarketcap API</a> to fetch coins prices</li>
+                <li><a href="https://github.com/brix/crypto-js">AES</a> to encrypt the data</li>
+                <li><a href="https://github.com/pieroxy/lz-string">LZ-based</a> compression algorithm to fit data in the URL</li>
+                <li><a href="https://vuejs.org/">Vue.js</a> framework</li>
+                <li>Icons by <a href="https://fontawesome.com">Font Awesome</a></li>
+                <li>Logo made by <a href="http://www.freepik.com" title="Freepik">Freepik</a></li>
+              </ul>
+            </div>
+          </div>
+        </b-col>
+        <b-col md='6' offset-md='3'>
+          <div class='explanation-item'>
+            <div class='icon'>
+              <font-awesome-icon icon="beer" size="3x" />
+            </div>
             <h3>DONATE</h3>
             <p>
-              We are a verified publisher on Brave/BAT so the best way to help us is by visiting cryptolou.com on the Brave browser.
+              We are a verified publisher on Brave so the best way to help us is by visiting cryptolou.com via the Brave browser.
               <br />
-              And you can always buy us a beer by sending few ETH at XRETEQRWETYRUTYI
+              You can always buy us a beer by sending us few satoshis at:
+              <br />
+              ETH: 0xc5268bc3b58c24d2e323ab42646a5524f1d4fb9c
+              <br />
+              LTC: LRwj4wcGRt8nNhK6S8FHJfjLKciEQpeuwY
             </p>
           </div>
         </b-col>
       </b-row>
-      <div>
-        UNDER THE HOOD
-        coinmarketcap API to fetch coins prices
-        BCRYPT for secure password
-        LZ-based compression algorithm to fit data in the URL
-        Vue.js
-      </div>
     </b-container>
   </div>
 </template>

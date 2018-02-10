@@ -1,4 +1,5 @@
 @import "loading";
+@import "stars";
 
 html {
   height: 100%;
@@ -25,6 +26,10 @@ button {
   }
 }
 
+.navbar-dark.bg-primary {
+  background-color: $indigo !important;
+}
+
 .fa-icon {
   vertical-align: middle;
 }
@@ -44,9 +49,8 @@ button {
 }
 
 .v-select.filters .dropdown-toggle {
-  background: transparent;
   border: none;
-  border-bottom: 1px $gray-300 solid;
+  border-radius: 2px;
 }
 
 .dropdown-item:focus {
@@ -70,54 +74,129 @@ button {
   }
 }
 
-.pattern {
-  background-color: #4588d9;
-  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%230c62c8' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+h3.total {
+  text-align: center;
+}
+
+.night-stars {
+  height: calc(100% - 58px);
+  min-height: 800px;
+  background: linear-gradient($indigo 0%,  #010916 100%);
+  text-align: center;
   .title {
+    margin-top: 10%;
+    padding: 1rem;
+    text-shadow: 0px 0px 4px $blue;;
     color: white;
   }
   p {
     color: #b5cdea;
   }
+  .cta {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
 }
 
-.explanation-item {
-  padding: 2rem 1rem;
+#arrow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -42px;
+  left: 50%;
+  z-index: 1000;
+  transform: rotate(180deg);
+  background: transparent url('./assets/images/arrow.svg') no-repeat;
+}
+
+#to-the-moon {
+  position: absolute;
+  top: -50px;
+  left: calc(50% + 40px);
+  font-family: 'Nanum Pen Script', cursive;
+  color: #b5cdea;
+}
+
+.explanation {
   h3 {
     padding: 1rem 0;
   }
-  svg, h3 {
+  .icon {
+    margin: 0 auto;
+    position: relative;
+    width: 100px;
+    height: 100px;
     color: $blue;
+    border: 2px $indigo solid;
+    background: white;
+    border-radius: 50%;
+    svg {
+      position:absolute;
+      top:50%;
+      bottom:50%;
+      transform:translate(-50%, -50%);
+    }
   }
+  h3 {
+    color: $indigo;
+  }
+}
+
+.explanation-item {
+  padding: 2rem 0;
+  overflow: auto;
   p {
     text-align: left;
   }
+}
+
+.dropdown-menu {
+  max-height: 400px;
+  overflow-y: auto;
+  a:hover {
+    .text-muted {
+      color: white !important;
+    }
+  }
+}
+
+.coins-list {
+  margin-right: -15px;
+  margin-left: -15px;
+  .last-col {
+    padding-right: 15px;
+  }
+  .first-col {
+    padding-left: 15px;
+  }
+  .btn-link {
+    color: white;
+    padding: 0;
+    margin-top: 5px;
+  }
+  .header {
+    background-color: $indigo;
+    padding: 1rem;
+    border-radius: 4px 4px 0px 0px;
+    a{
+      color: white;
+    }
+  }
+  margin-bottom: 5rem;
+  background: white;
+  border: 1px $gray-300 solid;
+  border-radius: 4px;
+}
+
+.new-coin {
+  text-align: center;
 }
 
 #space {
   position: relative;
   height: calc(100% - 58px);
   overflow: hidden;
-}
-
-#moon {
-  position: absolute;
-  top: 200px;
-  right: 10px;
-  width: 300px;
-  height: 300px;
-  background: transparent url('./assets/images/moon.svg') no-repeat;
-}
-
-#rocket {
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  transform: rotate(10deg);
-  width: 100px;
-  height: 100px;
-  background: transparent url('./assets/images/rocket.svg') no-repeat;
-  z-index: 2;
 }
 
 #astronaut {
@@ -128,53 +207,6 @@ button {
   height: 40px;
   background: transparent url('./assets/images/astronaut.svg') no-repeat;
   transform: rotate(44deg);
-}
-
-#jupiter {
-  position: absolute;
-  top: -10px;
-  right: 300px;
-  width: 80px;
-  height: 80px;
-  opacity: 0.6;
-  background: transparent url('./assets/images/jupiter.svg') no-repeat;
-  transform: rotate(-20deg);
-}
-
-#saturn {
-  position: absolute;
-  left: 200px;
-  top: 20px;
-  width: 120px;
-  height: 100px;
-  background: transparent url('./assets/images/saturn.svg') no-repeat;
-}
-
-#planet-earth {
-  position: absolute;
-  left: -200px;
-  bottom: -250px;
-  width: 600px;
-  height: 600px;
-  background: transparent url('./assets/images/planet-earth.svg') no-repeat;
-}
-
-#space-station {
-  position: absolute;
-  left: 5px;
-  bottom: 370px;
-  width: 45px;
-  height: 45px;
-  background: transparent url('./assets/images/space-station.svg') no-repeat;
-  transform: rotate(75deg);
-}
-
-#space-title {
-  position: absolute;
-  left: 0;
-  top: 40px;
-  width: 100%;
-  z-index: 4;
 }
 
 @include media-breakpoint-down(sm) {
@@ -195,5 +227,25 @@ button {
       }
 
     }
+  }
+}
+
+
+@include media-breakpoint-up(md) {
+  h3.total {
+    text-align: left;
+  }
+
+  .coins-list {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .new-coin {
+    text-align: right;
+  }
+
+  .explanation-item {
+    padding: 2rem 2rem;
   }
 }

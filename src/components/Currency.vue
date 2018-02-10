@@ -2,7 +2,7 @@
   <div class='currency'>
     <b-row v-b-toggle="coin.id.toString()" class='pb-3 pt-3 currency-header'>
       <b-col cols='7'>
-        <b-media vertical-align="center" >
+        <b-media vertical-align="center first-col" >
           <b-img slot="aside" :src="`https://files.coinmarketcap.com/static/img/coins/32x32/${coin.key}.png`" height="32" width="32" />
           <strong>
             {{ coin.coinmarketcap.name }}
@@ -20,41 +20,47 @@
         </b-media>
       </b-col>
       <b-col cols='5' class='text-right'>
-        <strong>
-          <formatted-number
-            :number="value(coin)"
-            :options="{ style: 'currency', currency: this.currency }" />
-        </strong>
-        <div>
-          <formatted-number
-            :number="performance(coin)"
-            :options="{ style: 'percent' }"
-            :htmlOptions="{ colored: true }" />
+        <div class='last-col'>
+          <strong>
+            <formatted-number
+              :number="value(coin)"
+              :options="{ style: 'currency', currency: this.currency }" />
+          </strong>
+          <div>
+            <formatted-number
+              :number="performance(coin)"
+              :options="{ style: 'percent' }"
+              :htmlOptions="{ colored: true }" />
+          </div>
         </div>
       </b-col>
     </b-row>
     <b-collapse :id="coin.id.toString()" class='currency-more'>
       <b-row class='pb-3'>
         <b-col cols='8'>
-          <div>
-            <span class='text-muted'>quantity:</span>
-            <formatted-number :number="coin.quantity" />
+          <div class='first-col'>
+            <div>
+              <span class='text-muted'>Quantity:</span>
+              <formatted-number :number="coin.quantity" />
+            </div>
+            <div>
+              <span class='text-muted'>Cost:</span>
+              <formatted-number
+                :number="coin.cost"
+                :options="{ style: 'currency', currency: this.currency }" />
+              <small>(<formatted-number :number="distribution(coin)" :options="{ style: 'percent' }" />)</small>
+            </div>
+            <div v-if="tags(coin)"><span class='text-muted'>Tags:</span> {{ tags(coin) }}</div>
+            <div v-if="info(coin)"><span class='text-muted'>Info:</span> {{ info(coin) }}</div>
           </div>
-          <div>
-            <span class='text-muted'>cost:</span>
-            <formatted-number
-              :number="coin.cost"
-              :options="{ style: 'currency', currency: this.currency }" />
-            <small>(<formatted-number :number="distribution(coin)" :options="{ style: 'percent' }" />)</small>
-          </div>
-          <div v-if="tags(coin)"><span class='text-muted'>tags:</span> {{ tags(coin) }}</div>
-          <div v-if="info(coin)"><span class='text-muted'>info:</span> {{ info(coin) }}</div>
         </b-col>
         <b-col cols='4' class='text-right'>
+          <div class='last-col'>
           <b-button variant="outline-danger" size='sm' @click="removeCurrency(coin)">
             <font-awesome-icon icon="trash-alt" />
           </b-button>
           <currency-modal type='update' :currency="coin" button-variant='outline-primary' button-icon='pencil-alt' button-size='sm' />
+        </div>
         </b-col>
       </b-row>
     </b-collapse>

@@ -24,12 +24,13 @@ yarn start
 - [x] Change currency / locale
 - [x] Fix navbar buttons on tiny screens
 - [x] Animate loading dots
-- [ ] Possibility to change currency instead of language
-- [ ] Use Bcrypt for password encryption
+- [x] Possibility to change currency instead of language
+- [x] Home page
 - [ ] Display error on wrong password
-- [ ] Home page
 - [ ] URL shortner
 - [ ] Simple format + autolink info text
 - [ ] Fix vue-select CSS on tiny screens
 - [ ] Handle errors on Ajax calls (429)
+- [ ] Rename currency to coin
+- [ ] Do not display empty message on tags field
 - [ ] Switch Theme (night/day)

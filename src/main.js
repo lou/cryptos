@@ -15,12 +15,14 @@ import lock from '@fortawesome/fontawesome-free-solid/faLock'
 import coffee from '@fortawesome/fontawesome-free-solid/faCoffee'
 import sync from '@fortawesome/fontawesome-free-solid/faSyncAlt'
 import cog from '@fortawesome/fontawesome-free-solid/faCog'
-import rocket from '@fortawesome/fontawesome-free-solid/faRocket'
+import cogs from '@fortawesome/fontawesome-free-solid/faCogs'
+import rocket from '@fortawesome/fontawesome-free-solid/faSpaceShuttle'
 import beer from '@fortawesome/fontawesome-free-solid/faBeer'
+import plus from '@fortawesome/fontawesome-free-solid/faPlus'
 
 Vue.use(BootstrapVue)
 
-fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog, rocket, beer)
+fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog, rocket, beer, plus, cogs)
 
 Vue.config.productionTip = false
 

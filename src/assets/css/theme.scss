@@ -2,13 +2,11 @@
 $white: #fff;
 $black: #000;
 $green: #00934F;
-$blue: #0C62C8;
-$orange: #ed543f;
+$blue: #387fe2;
+$indigo: #071f44;
+$orange: #fc8008;
 $yellow: #ebbc4b;
 $red: #FF5A5F;
-
-$blue-dark: #02162D;
-
 
 $gray-100: #fefefe;
 $gray-200: #f9f9fd;
@@ -24,7 +22,6 @@ $warning: $yellow;
 $danger: $red;
 
 $body-bg: $gray-200;
-// $body-bg: $blue-dark;
 
 $font-family-sans-serif: 'Pontano', Helvetica, Arial, sans-serif;
 
@@ -35,3 +32,5 @@ $dropdown-link-active-color: $gray-900;
 $dropdown-link-active-bg:    $gray-100;
 
 $modal-content-bg: $gray-100;
+
+$navbar-dark-color: rgba(255, 255, 255, 0.95)

@@ -37,13 +37,13 @@ export default {
       modalVisible: false,
       modalTypes: {
         add: {
-          title: 'Add new currency',
-          submitLabel: 'Add new currency',
+          title: 'Add new coin',
+          submitLabel: 'Add new coin',
           method: 'addCurrency'
         },
         update: {
-          title: 'Edit currency',
-          submitLabel: 'Update currency',
+          title: 'Edit coin',
+          submitLabel: 'Update coin',
           method: 'updateCurrency'
         }
       }

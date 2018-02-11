@@ -51,7 +51,10 @@
               <small>(<formatted-number :number="distribution(coin)" :options="{ style: 'percent' }" />)</small>
             </div>
             <div v-if="tags(coin)"><span class='text-muted'>Tags:</span> {{ tags(coin) }}</div>
-            <div v-if="info(coin)"><span class='text-muted'>Info:</span> {{ info(coin) }}</div>
+            <div v-if="info(coin)">
+              <span class='text-muted'>Info:</span>
+              <div v-html="info(coin)"></div>
+            </div>
           </div>
         </b-col>
         <b-col cols='4' class='text-right'>
@@ -73,6 +76,7 @@ import CurrencyModal from './CurrencyModal'
 import FormattedNumber from './FormattedNumber'
 import { mapGetters } from 'vuex'
 import _ from 'lodash'
+import autoLink from 'autolink-js'
 
 export default {
   name: 'Currency',
@@ -86,6 +90,17 @@ export default {
     ...mapGetters(['total', 'currency'])
   },
   methods: {
+    simpleFormat (str) {
+      str = str.replace(/<(?:.|\n)*?>/gm, '')
+      str = str.replace(/\r\n?/, '\n')
+      str = str.trim()
+      if (str.length > 0) {
+        str = str.replace(/\n\n+/g, '</p><p>')
+        str = str.replace(/\n/g, '<br />')
+        str = '<p>' + str + '</p>'
+      }
+      return str
+    },
     tags (coin) {
       if (!_.isEmpty(coin.tags)) {
         return coin.tags.join(', ')
@@ -96,7 +111,7 @@ export default {
     },
     info (coin) {
       if (!_.isEmpty(coin.info)) {
-        return coin.info
+        return this.simpleFormat(coin.info).autoLink({ target: '_blank', rel: 'nofollow' })
       }
     },
     value (coin) {

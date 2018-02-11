@@ -27,7 +27,8 @@ yarn start
 - [x] Possibility to change currency instead of language
 - [x] Home page
 - [x] Display error on wrong password
-- [ ] URL shortner
+- [x] limit info text to N chars
+- [ ] URL shortener
 - [ ] Simple format + autolink info text
 - [ ] Fix vue-select CSS on tiny screens
 - [ ] Handle errors on Ajax calls (429)

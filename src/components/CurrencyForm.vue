@@ -39,11 +39,15 @@
     </b-form-group>
     <b-form-group label="Info:" label-for="currency_info">
       <b-form-textarea
+        maxlength="150"
         v-model="localCurrency.info"
         id="currency_info"
         placeholder="info"
-        rows="7">
+        rows="3"
+        @keyup.native="countdown"
+        @keydown.native="countdown">
       </b-form-textarea>
+      <small class='text-muted'>{{this.infoText.remainingCount}} remaining characters</small>
     </b-form-group>
     <b-button type="submit" variant='primary'>
       {{ submitLabel }}
@@ -70,11 +74,18 @@ export default {
       if (!this.currency) {
         this.localCurrency = _.cloneDeep(defaultCurrency)
       }
+    },
+    countdown () {
+      this.infoText.remainingCount = this.infoText.maxCount - (this.localCurrency.info && this.localCurrency.info.length)
     }
   },
   data () {
     return {
-      localCurrency: _.cloneDeep(this.currency || defaultCurrency)
+      localCurrency: _.cloneDeep(this.currency || defaultCurrency),
+      infoText: {
+        maxCount: 150,
+        remainingCount: 150
+      }
     }
   },
   computed: {

@@ -3,6 +3,9 @@
     <b-row>
       <b-col offset-md='2' md='8' lg='6' offset-lg='3'>
         <b-form @submit.prevent="handleSubmit">
+          <b-alert show variant="danger" v-if="wrongPassword">
+            Incorrect password
+          </b-alert>
           <b-form-group label="Password" label-for="password">
             <b-form-input
               type="password"
@@ -33,6 +36,9 @@ export default {
   computed: {
     locked () {
       return this.$store.state.locked
+    },
+    wrongPassword () {
+      return this.$store.state.wrongPassword
     }
   },
   methods: {

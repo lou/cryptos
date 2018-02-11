@@ -26,7 +26,7 @@ yarn start
 - [x] Animate loading dots
 - [x] Possibility to change currency instead of language
 - [x] Home page
-- [ ] Display error on wrong password
+- [x] Display error on wrong password
 - [ ] URL shortner
 - [ ] Simple format + autolink info text
 - [ ] Fix vue-select CSS on tiny screens

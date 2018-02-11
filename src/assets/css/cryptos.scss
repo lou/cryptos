@@ -154,7 +154,7 @@ h3.total {
 .dropdown-menu {
   max-height: 400px;
   overflow-y: auto;
-  a:hover {
+  a:hover, a:focus {
     .text-muted {
       color: white !important;
     }

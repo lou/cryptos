@@ -7,7 +7,7 @@
           &nbsp;
           <strong>CRYPTOLOU</strong>
         </b-navbar-brand>
-        <b-navbar-nav class='ml-auto' v-if="showList">>
+        <b-navbar-nav class='ml-auto' v-if="showList && !locked">>
           <b-nav-item-dropdown no-caret right>
             <template slot="button-content">
               {{ getSymbolFromCurrency(currency) }}
@@ -50,11 +50,11 @@ export default {
     showList () {
       return this.$store.state.showList
     },
-    availableCurrencies () {
-      return _.without(availableCurrencies, this.currency)
-    },
     locked () {
       return this.$store.state.locked
+    },
+    availableCurrencies () {
+      return _.without(availableCurrencies, this.currency)
     },
     lockText () {
       return _.isEmpty(this.$store.state.password) ? 'Set Password' : 'Change Password'

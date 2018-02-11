@@ -82,6 +82,7 @@ export const store = new Vuex.Store({
     loading: false,
     password: '',
     updatingPassword: false,
+    wrongPassword: false,
     locked: false,
     showList: false,
     sort: {
@@ -105,10 +106,10 @@ export const store = new Vuex.Store({
           let bytes = CryptoJS.AES.decrypt(ciphertext.toString(), state.password)
           let config = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
 
-          this.replaceState({ ...state, ...config, showList: true, locked: false, updatingPassword: false })
+          this.replaceState({ ...state, ...config, showList: true, locked: false, updatingPassword: false, wrongPassword: false })
           this.dispatch('fetchCurrencies')
         } catch (e) {
-          this.replaceState({ ...state, locked: true, showList: true })
+          this.replaceState({ ...state, locked: true, showList: true, wrongPassword: state.locked })
           // WRONG PASSWORD
         }
       } else {

@@ -28,10 +28,10 @@ yarn start
 - [x] Home page
 - [x] Display error on wrong password
 - [x] limit info text to N chars
-- [ ] URL shortener
-- [ ] Simple format + autolink info text
+- [x] Simple format + autolink info text
+- [x] Do not display empty message on tags field
 - [ ] Fix vue-select CSS on tiny screens
 - [ ] Handle errors on Ajax calls (429)
 - [ ] Rename currency to coin
-- [ ] Do not display empty message on tags field
+- [ ] URL shortener
 - [ ] Switch Theme (night/day)

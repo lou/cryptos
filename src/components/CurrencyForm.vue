@@ -35,6 +35,8 @@
         :taggable="true"
         placeholder="Choose or create tags"
         id="currency_tags">
+        <span slot="no-options">
+        </span>
       </v-select>
     </b-form-group>
     <b-form-group label="Info:" label-for="currency_info">

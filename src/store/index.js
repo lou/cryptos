@@ -173,7 +173,9 @@ export const store = new Vuex.Store({
 
       params.append('url', window.location.href)
       commit('setShortenedUrl', null)
-      axios.post('https://git.io', params).then((response) => {
+      axios.post('https://git.io', params, {
+        'Access-Control-Allow-Origin': 'https://lou.github.io'
+      }).then((response) => {
         if (response.headers['Location']) {
           commit('setShortenedUrl', response.headers['Location'])
         }

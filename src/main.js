@@ -19,10 +19,11 @@ import cogs from '@fortawesome/fontawesome-free-solid/faCogs'
 import rocket from '@fortawesome/fontawesome-free-solid/faSpaceShuttle'
 import beer from '@fortawesome/fontawesome-free-solid/faBeer'
 import plus from '@fortawesome/fontawesome-free-solid/faPlus'
+import share from '@fortawesome/fontawesome-free-solid/fashareSquare'
 
 Vue.use(BootstrapVue)
 
-fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog, rocket, beer, plus, cogs)
+fontawesome.library.add(pencil, trash, osi, privacy, heart, shield, lock, trash, coffee, sync, cog, rocket, beer, plus, cogs, share)
 
 Vue.config.productionTip = false
 

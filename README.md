@@ -30,8 +30,10 @@ yarn start
 - [x] limit info text to N chars
 - [x] Simple format + autolink info text
 - [x] Do not display empty message on tags field
+- [x] Fix vue-select colors
+- [ ] URL shortener
+- [ ] Fix cost null vs 0
 - [ ] Fix vue-select CSS on tiny screens
 - [ ] Handle errors on Ajax calls (429)
 - [ ] Rename currency to coin
-- [ ] URL shortener
 - [ ] Switch Theme (night/day)

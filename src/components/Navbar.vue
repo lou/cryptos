@@ -2,7 +2,7 @@
   <div>
     <b-navbar toggleable="md" type="dark" variant="primary">
       <b-container>
-        <b-navbar-brand href='/'>
+        <b-navbar-brand href='./'>
           <img class='navbar-brand-img' src="../assets/images/telescope.svg" alt="cryptos" width='32' height='32' />
           &nbsp;
           <strong>CRYPTOLOU</strong>
@@ -23,6 +23,9 @@
             <template slot="button-content">
               <font-awesome-icon icon="cog" transform="grow-2" />
             </template>
+            <b-dropdown-item @click='shareModal'>
+              <font-awesome-icon icon="share-square" /> Share
+            </b-dropdown-item>
             <b-dropdown-item  @click="setPassword">
               <font-awesome-icon icon="lock" />
               &nbsp;
@@ -32,6 +35,20 @@
         </b-navbar-nav>
       </b-container>
     </b-navbar>
+    <b-modal
+      id="share-modal"
+      ref="dialog"
+      v-model="shareModalVisible"
+      title="Share your portfolio"
+      hide-footer
+      class='text-left'>
+      <div class='mb-4 mt-3'>
+        <span v-if="!shortenedUrl" class='loading'>
+          Please wait while we are generating your shortened URL<span>.</span><span>.</span><span>.</span>
+        </span>
+        <span else>{{ shortenedUrl }}</span>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -45,8 +62,13 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
   components: { FontAwesomeIcon },
+  data () {
+    return {
+      shareModalVisible: false
+    }
+  },
   computed: {
-    ...mapGetters(['currency']),
+    ...mapGetters(['currency', 'shortenedUrl']),
     showList () {
       return this.$store.state.showList
     },
@@ -61,6 +83,10 @@ export default {
     }
   },
   methods: {
+    shareModal () {
+      this.$store.dispatch('shortenUrl')
+      this.shareModalVisible = true
+    },
     getSymbolFromCurrency (currency) {
       return getSymbolFromCurrency(currency)
     },

@@ -3,7 +3,7 @@
     <b-row v-b-toggle="coin.id.toString()" class='pb-3 pt-3 currency-header'>
       <b-col cols='7'>
         <b-media vertical-align="center first-col" >
-          <b-img slot="aside" :src="`https://files.coinmarketcap.com/static/img/coins/32x32/${coin.key}.png`" height="32" width="32" />
+          <b-img slot="aside" :src="`https://images.coinviewer.io/currencies/32x32/${coin.key}.png`" height="32" width="32" />
           <strong>
             {{ coin.coinmarketcap.name }}
           </strong>

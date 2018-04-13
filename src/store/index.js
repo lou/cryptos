@@ -184,7 +184,7 @@ export const store = new Vuex.Store({
       })
     },
     fetchAllCurrencies ({ commit }) {
-      axios.get('https://files.coinmarketcap.com/generated/search/quick_search.json').then((response) => {
+      axios.get('https://s2.coinmarketcap.com/generated/search/quick_search.json').then((response) => {
         commit('setAllCurrencies', response.data)
       })
     },

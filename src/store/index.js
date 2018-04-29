@@ -85,7 +85,6 @@ export const store = new Vuex.Store({
     wrongPassword: false,
     locked: false,
     showList: false,
-    shortenedUrl: null,
     sort: {
       by: 'cost',
       ascending: false
@@ -135,9 +134,6 @@ export const store = new Vuex.Store({
     setLoading (state, loading) {
       state.loading = loading
     },
-    setShortenedUrl (state, url) {
-      state.shortenedUrl = url
-    },
     setUpdatingPassword (state, updatingPassword) {
       state.updatingPassword = updatingPassword
     },
@@ -168,21 +164,6 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    shortenUrl ({ commit, state }) {
-      let params = new URLSearchParams()
-
-      params.append('url', window.location.href)
-      commit('setShortenedUrl', null)
-      axios.post('https://git.io', params, {
-        'Access-Control-Allow-Origin': 'https://lou.github.io'
-      }).then((response) => {
-        if (response.headers['Location']) {
-          commit('setShortenedUrl', response.headers['Location'])
-        }
-      }).catch((e) => {
-        debugger
-      })
-    },
     fetchAllCurrencies ({ commit }) {
       axios.get('https://s2.coinmarketcap.com/generated/search/quick_search.json').then((response) => {
         commit('setAllCurrencies', response.data)
@@ -231,9 +212,6 @@ export const store = new Vuex.Store({
     },
     currency (state) {
       return state.currency
-    },
-    shortenedUrl (state) {
-      return state.shortenedUrl
     },
     locale (state) {
       return currencyToLocale[state.currency]

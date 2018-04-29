@@ -43,10 +43,12 @@
       hide-footer
       class='text-left'>
       <div class='mb-4 mt-3'>
-        <span v-if="!shortenedUrl" class='loading'>
-          Please wait while we are generating your shortened URL<span>.</span><span>.</span><span>.</span>
-        </span>
-        <span else>{{ shortenedUrl }}</span>
+        <ol>
+          <li>Copy the current URL</li>
+          <li>Go to <a href='https://git.io/' target='_blank' rel='noopener'>https://git.io/</a></li>
+          <li>Paste the url in the box</li>
+          <li>Share your tiny portfolio URL to the world</li>
+        </ol>
       </div>
     </b-modal>
   </div>
@@ -68,7 +70,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currency', 'shortenedUrl']),
+    ...mapGetters(['currency']),
     showList () {
       return this.$store.state.showList
     },
@@ -84,7 +86,6 @@ export default {
   },
   methods: {
     shareModal () {
-      this.$store.dispatch('shortenUrl')
       this.shareModalVisible = true
     },
     getSymbolFromCurrency (currency) {

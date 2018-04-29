@@ -114,7 +114,7 @@
             </div>
           </div>
         </b-col>
-        <b-col md='6' offset-md='3'>
+<!--         <b-col md='6' offset-md='3'>
           <div class='explanation-item'>
             <div class='icon'>
               <font-awesome-icon icon="beer" size="3x" />
@@ -131,7 +131,7 @@
             </p>
           </div>
         </b-col>
-      </b-row>
+ -->      </b-row>
     </b-container>
   </div>
 </template>

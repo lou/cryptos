@@ -63,7 +63,7 @@
             <p>
               We can't access your data so we can't sell it.
               <br />
-              You own your data.
+              Everything is stored on Github Pages and we do not have access to any logs.
               <br />
               Moreover we do not use any third party libraries such as Goolge Anlaytics to track your behaviour on Cryptolou.com.
             </p>
